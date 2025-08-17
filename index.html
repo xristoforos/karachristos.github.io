@@ -179,6 +179,13 @@ ol > li::marker{ color: var(--accent); font-weight: 700; }
   animation: float 4s ease-in-out infinite;
 }
 
+/* Όταν η οθόνη μικρύνει κάτω από 768px, κρύψε την εικόνα */
+@media (max-width: 768px) {
+  .profile-pic {
+    display: none;
+  }
+}
+
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-12px); }
