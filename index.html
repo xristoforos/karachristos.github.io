@@ -7,129 +7,190 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
       margin: 0; padding: 0;
+      font-family: 'Roboto', sans-serif;
       background: #f4f6f9;
       color: #333;
+      display: flex;
     }
-    header {
-      background: linear-gradient(135deg,#2c3e50,#4ca1af);
-      color: white;
+    nav {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 250px;
+      background: #2c3e50;
+      padding-top: 30px;
+      overflow-y: auto;
+    }
+    nav h2 {
+      color: #ecf0f1;
       text-align: center;
-      padding: 50px 20px;
+      margin-bottom: 20px;
     }
-    header h1 { margin: 0; font-size: 2.5em; }
-    header p { margin: 8px 0; font-size: 1.1em; }
-    section {
-      background: white;
-      margin: 20px auto;
-      padding: 20px 30px;
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav li {
+      margin: 10px 0;
+    }
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #34495e;
+    }
+    main {
+      margin-left: 250px;
+      padding: 20px 40px;
       max-width: 1000px;
+    }
+    section {
+      background: #fff;
+      margin-bottom: 30px;
+      padding: 20px 30px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    h2 {
+    section h2 {
       color: #2c3e50;
       border-bottom: 2px solid #4ca1af;
       padding-bottom: 5px;
       margin-top: 0;
     }
     ul { padding-left: 20px; }
-    li { margin-bottom: 8px; }
+    li { margin-bottom: 6px; }
     footer {
       text-align: center;
       padding: 20px;
       background: #2c3e50;
       color: white;
-      margin-top: 40px;
+      border-radius: 10px;
     }
-    a { color: #4ca1af; text-decoration: none; }
-    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Καραχρήστος Χριστόφορος</h1>
-    <p>Instructional Designer | Εκπαιδευτής Πληροφορικής</p>
-    <p>📧 karachristos.x@gmail.com | 📞 6947345322</p>
-  </header>
-
-  <section>
-    <h2>Προσωπικά Στοιχεία</h2>
-    <p><strong>Ημ. γέννησης:</strong> 28/05/1982</p>
-    <p><strong>Οικογενειακή κατάσταση:</strong> Έγγαμος</p>
-    <p><strong>Διεύθυνση:</strong> Γρηγορίου Λαμπράκη 16, Αγρίνιο</p>
-  </section>
-
-  <section>
-    <h2>Επαγγελματική Εμπειρία</h2>
+  <nav>
+    <h2>Μενού</h2>
     <ul>
-      <li><strong>2022 – Σήμερα:</strong> Ελληνικό Ανοικτό Πανεπιστήμιο – Instructional Designer</li>
-      <li><strong>2018 – Σήμερα:</strong> Εργαστήριο Εκπαιδευτικού Υλικού & Εκπαιδευτικής Μεθοδολογίας – Υπεύθυνος MOOCs</li>
-      <li><strong>2009 – Σήμερα:</strong> Συνεργασίες με Πανεπιστήμια, ΙΕΚ, ΣΔΕ, ΚΔΒΜ</li>
-      <li><strong>2006 – Σήμερα:</strong> Καθηγητής ΠΕ86 Πληροφορικής σε Δευτεροβάθμια</li>
+      <li><a href="#personal">Προσωπικά</a></li>
+      <li><a href="#education">Εκπαίδευση</a></li>
+      <li><a href="#work">Επαγγελματική Εμπειρία</a></li>
+      <li><a href="#teaching">Διδακτική Εμπειρία</a></li>
+      <li><a href="#projects">Ερευνητικά & Έργα</a></li>
+      <li><a href="#publications">Δημοσιεύσεις</a></li>
+      <li><a href="#seminars">Σεμινάρια & Πιστοποιήσεις</a></li>
+      <li><a href="#skills">Δεξιότητες</a></li>
+      <li><a href="#languages">Ξένες Γλώσσες</a></li>
+      <li><a href="#awards">Διακρίσεις</a></li>
     </ul>
-  </section>
+  </nav>
 
-  <section>
-    <h2>Διδακτική Εμπειρία</h2>
-    <ul>
-      <li>Καθηγητής σε Γυμνάσια & Λύκεια</li>
-      <li>Εργαστηριακός Συνεργάτης ΤΕΙ Μεσολογγίου</li>
-      <li>CISCO Instructor – IT Essentials</li>
-      <li>Εκπαιδευτής ΙΕΚ, ΣΔΕ, Κέντρα Δια Βίου Μάθησης</li>
-    </ul>
-  </section>
+  <main>
+    <header>
+      <h1>Καραχρήστος Χριστόφορος</h1>
+      <p>Instructional Designer | Εκπαιδευτής Πληροφορικής</p>
+      <p>📧 karachristos.x@gmail.com | 📞 6947345322</p>
+    </header>
 
-  <section>
-    <h2>Εκπαίδευση</h2>
-    <ul>
-      <li><strong>2023 – Σήμερα:</strong> Υποψήφιος Διδάκτορας, Πανεπιστήμιο Πατρών</li>
-      <li><strong>2023 – 2024:</strong> ΜΔΕ στην Ειδική Αγωγή, Frederick University</li>
-      <li><strong>2012 – 2015:</strong> ΜΔΕ Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση, Παν. Πατρών</li>
-      <li><strong>2007 – 2009:</strong> ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Παν. Πειραιώς</li>
-      <li><strong>2001 – 2006:</strong> Δίπλωμα, Παν. Πειραιώς</li>
-    </ul>
-  </section>
+    <section id="personal">
+      <h2>Προσωπικά Στοιχεία</h2>
+      <p><strong>Ημ. γέννησης:</strong> 28/05/1982</p>
+      <p><strong>Διεύθυνση:</strong> Αγρίνιο, Ελλάδα</p>
+      <p><strong>Οικογενειακή κατάσταση:</strong> Έγγαμος</p>
+    </section>
 
-  <section>
-    <h2>Ερευνητικά & Ευρωπαϊκά Έργα</h2>
-    <ul>
-      <li>XR2Learn – Extended Reality for Education</li>
-      <li>Drones4STEM – Εκπαιδευτική χρήση drones</li>
-      <li>POSITIVE – Ψηφιακά εργαλεία ψυχοκοινωνικής φροντίδας</li>
-      <li>augMENTOR – XR για επαγγελματική κατάρτιση</li>
-    </ul>
-  </section>
+    <section id="education">
+      <h2>Εκπαίδευση</h2>
+      <ul>
+        <li><strong>2023 – Σήμερα:</strong> Υποψήφιος Διδάκτορας, Παν. Πατρών</li>
+        <li><strong>2023 – 2024:</strong> ΜΔΕ στην Ειδική Αγωγή, Frederick University</li>
+        <li><strong>2012 – 2015:</strong> ΜΔΕ Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση, Παν. Πατρών</li>
+        <li><strong>2007 – 2009:</strong> ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Παν. Πειραιώς</li>
+        <li><strong>2001 – 2006:</strong> Δίπλωμα, Παν. Πειραιώς</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Δημοσιεύσεις (Ενδεικτικά)</h2>
-    <ul>
-      <li>Enhancing Collaborative Learning (AMBIENT 2014)</li>
-      <li>Bridging Virtual & Physical Classrooms (IE 2015)</li>
-      <li>Junior Coding Academy for Scratch & Arduino (ICODL 2017)</li>
-      <li>Technology and School Unit Improvement (Soc. Sci. 2019)</li>
-      <li>Recent: EDUCON 2024 (AI & Drones4STEM)</li>
-    </ul>
-    <p><a href="https://scholar.google.com" target="_blank">Δείτε όλες τις δημοσιεύσεις μου</a></p>
-  </section>
+    <section id="work">
+      <h2>Επαγγελματική Εμπειρία</h2>
+      <ul>
+        <li><strong>2022 – Σήμερα:</strong> Ελληνικό Ανοικτό Πανεπιστήμιο – Instructional Designer</li>
+        <li><strong>2018 – Σήμερα:</strong> Εργαστήριο Εκπαιδευτικού Υλικού – Υπεύθυνος MOOCs</li>
+        <li><strong>2009 – Σήμερα:</strong> Συνεργασίες με Πανεπιστήμια, ΙΕΚ, ΣΔΕ</li>
+        <li><strong>2006 – Σήμερα:</strong> Καθηγητής ΠΕ86 Πληροφορικής στη Δευτεροβάθμια</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Ξένες Γλώσσες</h2>
-    <p>Αγγλικά – Proficiency (University of Michigan)</p>
-  </section>
+    <section id="teaching">
+      <h2>Διδακτική Εμπειρία</h2>
+      <ul>
+        <li>Καθηγητής σε Γυμνάσια & Λύκεια</li>
+        <li>Εργαστηριακός Συνεργάτης ΤΕΙ Μεσολογγίου</li>
+        <li>CISCO Instructor – IT Essentials</li>
+        <li>Εκπαιδευτής ΙΕΚ, ΣΔΕ, ΚΔΒΜ</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Διακρίσεις</h2>
-    <ul>
-      <li>1η θέση Περιφερειακός Διαγωνισμός Εκπαιδευτικής Ρομποτικής (2018)</li>
-      <li>3η θέση Πανελλήνιος Διαγωνισμός Εκπαιδευτικής Ρομποτικής (2018)</li>
-      <li>1η θέση Πανελλήνιος Διαγωνισμός Ανοιχτών Τεχνολογιών (2018)</li>
-    </ul>
-  </section>
+    <section id="projects">
+      <h2>Ερευνητικά & Erasmus+ Έργα</h2>
+      <ul>
+        <li>XR2Learn – Extended Reality in Education</li>
+        <li>Drones4STEM – Εκπαιδευτική χρήση drones</li>
+        <li>POSITIVE – Ψηφιακά εργαλεία ψυχοκοινωνικής φροντίδας</li>
+        <li>augMENTOR – XR για επαγγελματική κατάρτιση</li>
+      </ul>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Καραχρήστος Χριστόφορος</p>
-  </footer>
+    <section id="publications">
+      <h2>Δημοσιεύσεις</h2>
+      <ul>
+        <li>Enhancing Collaborative Learning (AMBIENT 2014)</li>
+        <li>Bridging Virtual & Physical Classrooms (IE 2015)</li>
+        <li>Junior Coding Academy for Scratch & Arduino (ICODL 2017)</li>
+        <li>Technology and School Unit Improvement (Soc. Sci. 2019)</li>
+        <li>EDUCON 2024 (AI & Drones4STEM)</li>
+      </ul>
+    </section>
+
+    <section id="seminars">
+      <h2>Σεμινάρια & Πιστοποιήσεις</h2>
+      <ul>
+        <li>CISCO Instructor – IT Essentials</li>
+        <li>Πιστοποιήσεις e-learning & Moodle</li>
+        <li>Σεμινάρια Εκπαιδευτικής Ρομποτικής & STEM</li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2>Δεξιότητες</h2>
+      <ul>
+        <li>Instructional Design</li>
+        <li>e-Learning Development (Moodle, XR)</li>
+        <li>STEM & Ρομποτική</li>
+        <li>Web Development (HTML, CSS, JS)</li>
+      </ul>
+    </section>
+
+    <section id="languages">
+      <h2>Ξένες Γλώσσες</h2>
+      <p>Αγγλικά – Proficiency (University of Michigan)</p>
+    </section>
+
+    <section id="awards">
+      <h2>Διακρίσεις</h2>
+      <ul>
+        <li>1η θέση Περιφερειακός Διαγωνισμός Εκπαιδευτικής Ρομποτικής (2018)</li>
+        <li>3η θέση Πανελλήνιος Διαγωνισμός Εκπαιδευτικής Ρομποτικής (2018)</li>
+        <li>1η θέση Πανελλήνιος Διαγωνισμός Ανοιχτών Τεχνολογιών (2018)</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Καραχρήστος Χριστόφορος</p>
+    </footer>
+  </main>
 </body>
 </html>
