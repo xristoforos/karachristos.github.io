@@ -1,120 +1,436 @@
-<!DOCTYPE html>
+# Create a modern, stylish CV site from the provided DOC content.
+# We'll generate:
+# - index.html
+# - assets/style.css
+# - assets/script.js
+# And zip them into /mnt/data/karachristos_site.zip
+
+import os, zipfile, textwrap, json, html
+
+base_dir = "/mnt/data/karachristos_site"
+assets_dir = os.path.join(base_dir, "assets")
+os.makedirs(assets_dir, exist_ok=True)
+
+index_html = """<!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Βιογραφικό - Καραχρήστος Χριστόφορος</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      margin: 0; padding: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: #2c3e50;
-      color: white;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    header h1 { margin: 0; font-size: 2em; }
-    header p { margin: 5px 0; }
-    section {
-      background: white;
-      margin: 20px auto;
-      padding: 20px;
-      max-width: 1000px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #2c3e50;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 5px;
-    }
-    ul { padding-left: 20px; }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #eee;
-      margin-top: 20px;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Βιογραφικό | Καραχρήστος Χριστόφορος</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="description" content="Βιογραφικό σημείωμα του Καραχρήστου Χριστόφορου – Instructional Designer, Εκπαιδευτής Πληροφορικής, Ερευνητής." />
 </head>
 <body>
-  <header>
-    <h1>Καραχρήστος Χριστόφορος</h1>
-    <p>Instructional Designer | Εκπαιδευτής Πληροφορικής</p>
-    <p>📧 karachristos.x@gmail.com | 📞 6947345322</p>
+  <header class="header">
+    <div class="container">
+      <div class="hero">
+        <div class="avatar" aria-hidden="true">Χ</div>
+        <div class="hero-text">
+          <h1>Καραχρήστος Χριστόφορος</h1>
+          <p class="subtitle">Instructional Designer • Εκπαιδευτής Πληροφορικής • Ερευνητής</p>
+          <div class="meta">
+            <a href="mailto:karachristos.x@gmail.com" class="chip">karachristos.x@gmail.com</a>
+            <a href="mailto:karachrist@eap.gr" class="chip">karachrist@eap.gr</a>
+            <span class="chip">📞 6947345322</span>
+            <span class="chip">📞 2641022145</span>
+            <span class="chip">📍 Αγρίνιο</span>
+            <a href="skype:xristoforos.karachristos?chat" class="chip">Skype: xristoforos.karachristos</a>
+          </div>
+        </div>
+      </div>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Αναζήτηση στο βιογραφικό..." aria-label="Αναζήτηση" />
+        <div class="theme-toggle" title="Εναλλαγή θέματος" role="button" tabindex="0" aria-pressed="false">🌓</div>
+      </div>
+    </div>
   </header>
 
-  <section>
-    <h2>Προσωπικά Στοιχεία</h2>
-    <p><strong>Ημερομηνία γέννησης:</strong> 28/05/1982</p>
-    <p><strong>Οικογενειακή κατάσταση:</strong> Έγγαμος</p>
-    <p><strong>Διεύθυνση:</strong> Γρηγορίου Λαμπράκη 16, 30100, Αγρίνιο</p>
-  </section>
+  <main class="container">
+    <section id="about" class="card">
+      <h2>Προσωπικά Στοιχεία</h2>
+      <div class="grid-2">
+        <div>
+          <p><strong>Ονοματεπώνυμο:</strong> Καραχρήστος Χριστόφορος</p>
+          <p><strong>Ημερομηνία γέννησης:</strong> 28/05/1982</p>
+          <p><strong>Οικογενειακή κατάσταση:</strong> Έγγαμος</p>
+        </div>
+        <div>
+          <p><strong>Διεύθυνση:</strong> Γρηγορίου Λαμπράκη 16, 30100, Αγρίνιο</p>
+          <p><strong>E-mail:</strong> karachristos.x@gmail.com, karachrist@eap.gr</p>
+          <p><strong>Στρατιωτικές υποχρεώσεις:</strong> Εκπληρωμένες</p>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>Επαγγελματική Εμπειρία</h2>
-    <ul>
-      <li><strong>2022 - Σήμερα</strong>: Ελληνικό Ανοικτό Πανεπιστήμιο – Course Instructional Designer</li>
-      <li><strong>2023 - 2025</strong>: Horizon & Erasmus+ Projects (XR2Learn, Drones4STEM, POSITIVE, augMENTOR)</li>
-      <li><strong>2018 - Σήμερα</strong>: Εργαστήριο Εκπαιδευτικού Υλικού και Εκπαιδευτικής Μεθοδολογίας – Υπεύθυνος MOOC</li>
-      <li><strong>2009 - Σήμερα</strong>: Συνεργασίες με Πανεπιστήμια, ΙΕΚ, ΣΔΕ, Φροντιστήρια</li>
-    </ul>
-  </section>
+    <section id="experience" class="card">
+      <h2>Εργασιακή Εμπειρία</h2>
 
-  <section>
-    <h2>Διδακτική Εμπειρία</h2>
-    <ul>
-      <li>Καθηγητής ΠΕ86 σε Γυμνάσια & Λύκεια</li>
-      <li>Εργαστηριακός Συνεργάτης ΤΕΙ Μεσολογγίου</li>
-      <li>CISCO Instructor – IT Essentials</li>
-      <li>Εκπαιδευτής ΙΕΚ, ΣΔΕ, Κέντρα Δια Βίου Μάθησης</li>
-    </ul>
-  </section>
+      <details open>
+        <summary><span>2023–2025</span> Horizon & Erasmus+ έργα (XR2Learn, Drones4STEM, POSITIVE) και WIND MAINSYS</summary>
+        <div class="details-body">
+          <ul>
+            <li><strong>WIND MAINSYS</strong> — <em>Blocked</em></li>
+            <li><strong>01/10/2023 - 30/09/2025</strong> — Horizon Programme: <em>Xr2learn - Extended Reality for Learning in New Dimensions</em> — Συμμετοχή στα παραδοτέα του έργου</li>
+            <li><strong>01/10/2023 - 30/09/2025</strong> — <em>DRONES 4 STEM</em>: Training the next-generation experts in drone technologies and applications leveraging STEM in secondary education — Συμμετοχή στα παραδοτέα του έργου</li>
+            <li><strong>21/07/2023 - 31/12/2023</strong> — Erasmus+ Programme: <em>POSITIVE - Prevention Of Stress by exploITing an Innovative Virtual Environment</em> — Συμμετοχή στα παραδοτέα του έργου</li>
+            <li><strong>24/02/2023 - 24/06/2023</strong> — Εμπειρογνώμονας ΓΣΕΒΕΕ για την ανάπτυξη νέου επαγγελματικού περιγράμματος «Ειδικός υποστήριξης συστημάτων και περιεχομένου ηλεκτρονικής μάθησης»</li>
+            <li><strong>27/04/2023 - 30/06/2023</strong> — Έργο ΙΕΠ: Ανάπτυξη εκπαιδευτικού λογισμικού για προσχολική εκπαίδευση και παροχή ψηφιακού εκπαιδευτικού/επιμορφωτικού υλικού — Εξ αποστάσεως επιμόρφωση και υποστήριξη εκπαιδευτικών</li>
+          </ul>
+        </div>
+      </details>
 
-  <section>
-    <h2>Εκπαίδευση</h2>
-    <ul>
-      <li><strong>2023 - Σήμερα</strong>: Υποψήφιος Διδάκτορας, Πανεπιστήμιο Πατρών</li>
-      <li><strong>2023 - 2024</strong>: Μεταπτυχιακό στην Ειδική Αγωγή, Frederick University</li>
-      <li><strong>2012 - 2015</strong>: ΜΔΕ Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση, Πανεπιστήμιο Πατρών</li>
-      <li><strong>2007 - 2009</strong>: ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Πανεπιστήμιο Πειραιώς</li>
-      <li><strong>2001 - 2006</strong>: Δίπλωμα, Πανεπιστήμιο Πειραιώς</li>
-    </ul>
-  </section>
+      <details>
+        <summary><span>2022–Σήμερα</span> Ελληνικό Ανοικτό Πανεπιστήμιο (ΕΑΠ) — Τομέας Νέων Προγραμμάτων Σπουδών</summary>
+        <div class="details-body">
+          <p><strong>Καθήκοντα:</strong> Course Instructional Designer</p>
+          <ul>
+            <li><strong>1/10/2022 – 30/05/2024</strong> — Digital Europe Programme: <em>LeADS - Leading European Advanced Digital Skills</em></li>
+            <li><strong>1/10/2022 – Σήμερα</strong> — Horizon Programme: <em>augMENTOR - Augmented Intelligence for Pedagogically Sustained Training and Education</em></li>
+            <li><strong>01/11/2021 - 01/11/2024</strong> — Erasmus+ Programme: <em>PARADIGM</em> — Project Management, Συμμετοχή στα παραδοτέα</li>
+            <li><strong>01/11/2021 - 01/11/2024</strong> — Erasmus+ Programme: <em>DIGIHALL</em> — Project Management, Συμμετοχή στα παραδοτέα</li>
+            <li><strong>22/11/2021 - 30/11/2021</strong> — Erasmus+ <em>BEQUEL</em> — Μεταφράσεις & επιμέλεια κειμένων (Ελ–Αγγ–Ελ), O1/A4 Benchmarking questionnaire for VET providers</li>
+            <li><strong>01/03/2021 – 28/02/2023</strong> — Erasmus+ <em>VISITOR</em> — Project Management, Συμμετοχή στα παραδοτέα</li>
+            <li><strong>01/10/2019 – 30/11/2021</strong> — Erasmus+ <em>Faville</em> — Project Management, Συμμετοχή στα παραδοτέα</li>
+            <li><strong>01/09/2019 - 31/08/2022</strong> — Erasmus+ <em>Participa</em>: Professional Development Tools Supporting Participation Rights in Early Childhood Education</li>
+            <li><strong>01/04/2021 – 31/05/2021</strong> — Realiscape Typorama – ΕΕΥΕΜ/ΕΑΠ – MIS 80090 — Υπεργολαβία για ανάθεση εκπαιδευτικού έργου</li>
+            <li><strong>01/07/2020 - 30/11/2020</strong> — Interreg Greece–Italy: <em>Teleicce</em> — Teleworking & MOOC Training</li>
+            <li><strong>05/08/2019 - 15/09/2019</strong> — Erasmus+ <em>REAMOOC</em> — Τεχνική υποστήριξη</li>
+            <li><strong>27/11/2018 – 31/05/2019</strong> — Μελέτη–Οδηγός για ψηφιακή & εξ αποστάσεως εκπαίδευση (ΕΠ ΑΝΑΔ–ΕΔΒΜ 2014–2020)</li>
+            <li><strong>01/01/2018 – Σήμερα</strong> — ΕΕΥΕΜ – Υπεύθυνος Δημιουργίας & Διαχείρισης Ηλεκτρονικών Μαθημάτων, Υπεύθυνος υποέργου MOOC</li>
+            <li><strong>01/01/2017 – 31/12/2017</strong> — Junior Coding Academy – Google RISE 2016 (InterMedi@KT – Ελλάδα) — Χρηματοδότηση Google International</li>
+            <li><strong>23/12/2016 – 30/11/2017</strong> — Ελληνικό Ανοικτό Πανεπιστήμιο: Μεικτή μάθηση με Scratch — Σχεδίαση & υλοποίηση</li>
+            <li><strong>2016 – 2018</strong> — Ομάδα Νέων Προγραμμάτων Σπουδών – ΕΑΠ — Course Instructional Designer</li>
+            <li><strong>2015 – 2016</strong> — Erasmus+ (Αθλητισμός): Ίσες ευκαιρίες & αντιμετώπιση διακρίσεων στη βάση</li>
+            <li><strong>01/03/2015 – 31/05/2015</strong> — Ανοικτά Ακαδημαϊκά Μαθήματα – Παν. Πατρών — Ανάπτυξη μαθημάτων τύπου Β/Γ</li>
+            <li><strong>2014 – 2016</strong> — ΕΕΥΕΜ – ΕΑΠ — Προγραμματιστής Λογισμικού</li>
+            <li><strong>01/06/2014 – 31/08/2014</strong> — TU Eindhoven (REVATECH) — 3μηνη Πρακτική, Προγραμματιστής</li>
+            <li><strong>01/10/2013 – 31/12/2015</strong> — ΕΕΥΕΜ – ΕΑΠ — Προγραμματιστής Λογισμικού – Υποέργο 5</li>
+            <li><strong>01/06/2009 – 31/08/2009</strong> — MACTEL — Μηχανικός Δικτύων, Τεχνολόγος Πληροφορικής, Τεχνικός εγκαταστάσεων</li>
+            <li><strong>2008 – 2009</strong> — Στρατός: Σχολή Αξιωματικών Έρευνας Πληροφορικής — Αναλυτής Προγραμματιστής — Network/Domain/Mail/File Server Admin</li>
+          </ul>
+        </div>
+      </details>
+    </section>
 
-  <section>
-    <h2>Δημοσιεύσεις (Ενδεικτικά)</h2>
-    <ul>
-      <li>Enhancing Collaborative Learning (AMBIENT 2014)</li>
-      <li>Bridging Virtual & Physical Classrooms (IE 2015)</li>
-      <li>Junior Coding Academy for Scratch & Arduino (ICODL 2017)</li>
-      <li>Technology and School Unit Improvement (Soc. Sci. 2019)</li>
-      <li>Recent: EDUCON 2024 (AI & Drones4STEM)</li>
-    </ul>
-    <p><a href="https://scholar.google.com/citations?user=" target="_blank">Περισσότερες δημοσιεύσεις...</a></p>
-  </section>
+    <section id="teaching" class="card">
+      <h2>Διδακτική Εμπειρία</h2>
+      <ul class="bulleted">
+        <li><strong>2023–2024</strong> — Καθηγητής ΠΕ86, Ειδικό Επαγγελματικό Γυμνάσιο–Λύκειο Μεσολογγίου</li>
+        <li><strong>2011–2012, 2014–2015, 2017–2022</strong> — Σχολεία Δεύτερης Ευκαιρίας (ΙΝΕΔΙΒΙΜ)</li>
+        <li><strong>2010–Σήμερα</strong> — Φροντιστήρια Μέσης Εκπαίδευσης (Αιτ/νία – ενδεικτικά: Θεωρία & Πράξη, Διάπλαση, Δερβίτση, Αγωγή, Ζαρκαβέλη, Σύγχρονη Παιδεία, Πρόοδος, Θεμέλιο, Ενιαίο)</li>
+        <li><strong>2009–2012</strong> — Εργαστηριακός Συνεργάτης Τμήματος Αυτοματισμού (πρώην ΤΕΙ Μεσολογγίου): Τηλεπικοινωνιακά δίκτυα, Java OOP, CAD/CAM/CAE, Αρχιτεκτονική Η/Υ, Ακολουθιακά Κυκλώματα, C, Βιομηχανικός έλεγχος</li>
+        <li><strong>2009–2011</strong> — ΑΛΦΑ Εκπαίδευση Μεσολογγίου: CISCO IT Essentials, Summer camp, ECDL</li>
+        <li><strong>2010–2011, 2011–2012, 2015–2016</strong> — ΚΕ.Τ.Ε.Κ. ΕΠΑ.Σ μαθητείας ΟΑΕΔ: Εισαγωγή Η/Υ, Basic, Δίκτυα, Λειτουργικά, Προχωρημένες τεχνικές γραφείου, HTML</li>
+        <li><strong>2009–2010, 2010–2011, 2011–2012, 2012–2013, 2017–2018, 2018–2019, 2019–2020, 2020–2021, 2021–2022</strong> — Δημόσια ΙΕΚ: Βάσεις Δεδομένων, C OOP, DTP, Τεχνολογίες Ιστού, Ασφάλεια, Διαχείριση δικτύων, Αλγόριθμοι & Δομές, Pascal, Εισαγωγή Πληροφορικής, Java, Συνδυαστικά/Ακολουθιακά, ΛΣ, Python, Επικοινωνίες</li>
+        <li><strong>2010–2011</strong> — ΙΕΚ ΟΑΕΔ</li>
+        <li><strong>2013–2014</strong> — Εκπαιδευτής ΚΔΒΜ Αιτωλοακαρνανίας (Microsoft Office)</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Ξένες Γλώσσες</h2>
-    <p>Αγγλικά – Proficiency (University of Michigan)</p>
-  </section>
+    <section id="education" class="card">
+      <h2>Εκπαίδευση</h2>
+      <ul class="edu">
+        <li>
+          <div class="edu-title"><strong>2023–σήμερα</strong> — Υποψήφιος Διδάκτορας, ΠΤΔΕ – Πανεπιστήμιο Πατρών</div>
+          <div class="edu-desc">Διατριβή: «Μελέτη της αποτελεσματικότητας των περιβαλλόντων διαδικτυακής μάθησης με τεχνικές Τεχνητής Νοημοσύνης»</div>
+        </li>
+        <li>
+          <div class="edu-title"><strong>2023–2024</strong> — ΜΔΕ στην Ειδική Αγωγή, Frederick University (Κύπρος)</div>
+        </li>
+        <li>
+          <div class="edu-title"><strong>2014</strong> — Erasmus Placements Scholar, Eindhoven University of Technology</div>
+        </li>
+        <li>
+          <div class="edu-title"><strong>2012–2015</strong> — ΜΔΕ Υπολογιστικά Μαθηματικά – ΤΠΕ στην Εκπαίδευση, Μαθηματικό Τμήμα, Παν. Πατρών</div>
+          <div class="edu-desc">Διπλωματική: «Σχεδίαση, υλοποίηση και αξιολόγηση Ρομποτικής Συσκευής για τη Ρομποτική Πλατφόρμα e-ProBotLab»</div>
+        </li>
+        <li>
+          <div class="edu-title"><strong>2007–2009</strong> — ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Τμήμα Τηλεπικοινωνιών & Ψηφιακών Συστημάτων, Παν. Πειραιώς</div>
+          <div class="edu-desc">Διπλωματική: «Υλοποίηση και Μοντελοποίηση web services με BPEL: χρήση του IBM WebSphere»</div>
+        </li>
+        <li>
+          <div class="edu-title"><strong>2001–2006</strong> — Δίπλωμα στις Ψηφιακές Επικοινωνίες στην Εκπαίδευση, Τμήμα Διδακτικής της Τεχνολογίας & Ψηφιακών Συστημάτων, Παν. Πειραιώς</div>
+          <div class="edu-desc">Πτυχιακή: «Βελτιστοποίηση απόδοσης Java server» • Κάτοχος παιδαγωγικής επάρκειας</div>
+        </li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Διακρίσεις</h2>
-    <ul>
-      <li>1η θέση στον Περιφερειακό Διαγωνισμό Εκπαιδευτικής Ρομποτικής (2018)</li>
-      <li>3η θέση στον Πανελλήνιο Διαγωνισμό Εκπαιδευτικής Ρομποτικής (2018)</li>
-      <li>1η θέση στον Πανελλήνιο Διαγωνισμό Ανοιχτών Τεχνολογιών (2018)</li>
-    </ul>
-  </section>
+    <section id="publications" class="card">
+      <h2>Δημοσιευμένο Έργο</h2>
+      <ol class="pubs">
+        <li>C., Karachristos, C., Goumopoulos, A., Kameas, Enhancing Collaborative Learning and Management Tasks through Pervasive Computing Technologies, AMBIENT 2014, Rome, Italy.</li>
+        <li>Δομημένος Προγραμματισμός - Διερεύνηση της δομής επανάληψης Για... I-TEACHER.GR, 2014.</li>
+        <li>N., Kokkos, C., V., Karachristos, C., Goumopoulos, A., Kameas, Bridging the Gap..., IE'15, Prague.</li>
+        <li>Q. Wang, W. Chen, A. Timmermans, C. Karachristos, J.B. Martens, P. Markopoulos, EMBC 2015, Milano.</li>
+        <li>Antonelou, G., Karachristos Ch., et al., ICERI 2015, pp. 3930–3939.</li>
+        <li>Karachristos Ch., Stavropoulos E.C., et al., PCI 2016, DOI:10.1145/3003733.3003753.</li>
+        <li>Κ., Νάκος, Χ., Καραχρήστος, Α., Μισιρλή, Β., Κόμης, e-ProBotLab σχεδίαση & υλοποίηση, ICT in Education 2016.</li>
+        <li>Κ., Νάκος, Χ., Καραχρήστος, Α., Μισιρλή, Β., Κόμης, Παιδαγωγική σχεδίαση e-ProBotLab, ICT in Education 2016.</li>
+        <li>Δ., Αγγελοπούλου, Β., Βερύκιος, Χ., Καραχρήστος, Η., Σταυρόπουλος, Ψηφιακά μαθήματα επιμόρφωσης..., 2017.</li>
+        <li>Kouvara T.K., Karachristos C.V., Stavropoulos E.C., Verykios V.S., OMEP 2017.</li>
+        <li>Lazarinis F., et al., EDULEARN17, pp.2078–2085.</li>
+        <li>Gkontzis A.F., Karachristos C.V., et al., ICODL2017, pp.101–115.</li>
+        <li>Karachristos C.V., et al., ICODL2017, pp.292–296.</li>
+        <li>Gontzis A., Karachristos C.V., et al., PCI 2017, DOI:10.1145/3139367.3139389.</li>
+        <li>Antonopoulos P., Archimandritis G., Karachristos C.V., et al., IDEC 2018, pp.444–448.</li>
+        <li>Karachristos C.V., Lazarinis F., et al., OpenupEd Trend Report on MOOCs, 2018.</li>
+        <li>Kouvara T.K., Karasoula S.A., Karachristos C.V., et al., Soc. Sci. 2019, 8(2), 49.</li>
+        <li>Kouvara T.K., Karachristos C.V., et al., WEI Int'l Academic Conf., 2018.</li>
+        <li>Karachristos C., Nakos K., Komis V., Misirli A. (2018) e-ProBotLab..., Springer, Cham.</li>
+        <li>Karachristos C.D., Karakatsoulis D., et al., OpenupEd Trend Report on MOOCs, 2019.</li>
+        <li>Lazarinis F., Karachristos C.V., et al., Education and Information Technologies, 2018.</li>
+        <li>Lionarakis A., Orphanoudakis T., et al., ICERI2020, pp.6373–6380.</li>
+        <li>Karachristos C., Kouvara T., Orphanoudakis T., Stavropoulos E., Batsi Z., Chronopoulou M., ICERI2020, pp.6283–6290.</li>
+        <li>Karachristos C., Chantzis I., Grivopoulou A., Kouvara T. (2021). Fielduino (Digital Farming)... IGI Global.</li>
+        <li>Komis V., Karachristos C., et al., Appl. Sci. 2021, 11, 8653.</li>
+        <li>Κουβαρά Θ., Καραχρήστος Χ., Ορφανουδάκης Θ., & Σταυρόπουλος Η. (2020). Ανοικτή Εκπαίδευση, 16(1), 64-77.</li>
+        <li>Karachristos C., Kouvara T., Achilleopoulos N., Orphanoudakis T., Sideris D. (2021) EDULEARN21, pp.6925–6931.</li>
+        <li>Stavropoulos E., Karachristos C., et al., IHE2021 Proc., pp.461–475.</li>
+        <li>Kouvara T., Orphanoudakis T., et al. (2021) ICERI2021, pp.2830–2836.</li>
+        <li>Aristeidou M. et al. (2022). EDUCON 2022, pp.201–209.</li>
+        <li>Domalis G. et al. (2022). SEEL-22 2022. Springer.</li>
+        <li>Kouvara T., Fanariotis A., Fotopoulos V., Karachristos C., Orphanoudakis T. (2022) — Chapter in “Inclusive Digital Education”, Springer.</li>
+        <li>Orfanoudakis T., Aristeidou M., Kouvara T., Karachristos C., et al. (2022). Innovating Higher Education Conference.</li>
+        <li>Kouvara T., Fanariotis A., Fotopoulos V., Karachristos C., Orphanoudakis T. (2022) ICERI2022, pp.5195–5202.</li>
+        <li>Lavidas K., Papadakis S., Filippidi A., Karachristos C., Misirli A., Tzavara A., Komis V., Karacapilidis N. (2023). Sustainability 15, 6290.</li>
+        <li>Aristeidou M., Orphanoudakis T., Kouvara T., Karachristos C., & Spyropoulou N. (2023). INTED2023 Proc., pp.2572–2578.</li>
+        <li>Kouvara T., Dimopoulos V., Kalantzi R., Karachristos C., Stamati R. (2023). CTL (under review).</li>
+        <li>Kouvara T., Fanariotis A., Fotopoulos V., Karachristos C., Orphanoudakis T. (2023). IHE 2023 (under review).</li>
+        <li>Kouvara T., Fanariotis A., Fotopoulos V., Karachristos C., Orphanoudakis T. (2023). IEEE FIE (under review).</li>
+        <li>Καραχρήστος Χ., Κουβαρά Θ., Ορφανουδάκης Θ., Φωτόπουλος Β., Φαναριώτης Α. (2023). Scientix (under review).</li>
+        <li>Filippidi A., Karachristos C., Lavidas K., Komis V., Karacapilidis N. (2023). MIS4TEL 2023. Springer.</li>
+        <li>Play and technology enhanced toys in early childhood education: an evaluation instrument — Συγγραφική ομάδα.</li>
+        <li>«Μελέτη της χρήσης και της ευχρηστίας του ψηφιακού περιβάλλοντος προσχολικής εκπαίδευσης ΕΛΠεΙΔΑ» — Συγγραφική ομάδα.</li>
+        <li>I_HE2022</li>
+        <li>Να προσθέσω άρθρο με βιβλιογραφία από augMENTOR (σημείωση)</li>
+        <li>Να προσθέσω υπόλοιπα άρθρα με Νόρα (+Αμερική) (σημείωση)</li>
+        <li>Να προσθέσω άρθρα με Κόμη (ένα για early, συνέδριο Καβάλας) (σημείωση)</li>
+        <li>Tests</li>
+        <li>EDUCON 2024 — Expanding the 'A' in STEAM: Integrating Poetry and AI for Educational Evolution (accepted)</li>
+        <li>EDUCON 2024 — From Classroom to Sky: The Drones4STEM Initiative in Secondary Education (accepted)</li>
+        <li>Συνέδριο Ιωαννίνων — με σχόλιο enneegyl (σημείωση)</li>
+        <li>Συνέδριο Βελιγραδίου — enneegyl (σημείωση)</li>
+        <li>Συνέδριο Καστοριάς — enneegyl (σημείωση)</li>
+        <li>Συνέδριο Άρτας — enneegyl (σημείωση)</li>
+        <li>Συνέδριο Λάρισας — enneegyl (σημείωση)</li>
+        <li>Συνέδριο Αναστασιάδου — ΠΔΜ (σημείωση)</li>
+      </ol>
+      <p class="muted">* Οι εγγραφές με «(σημείωση)» είναι υπενθυμίσεις προς συμπλήρωση.</p>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 Καραχρήστος Χριστόφορος</p>
+    <section id="skills" class="card">
+      <h2>Ξένες Γλώσσες</h2>
+      <p>Αγγλικά — Proficiency (University of Michigan)</p>
+    </section>
+
+    <section id="certs" class="card">
+      <h2>Επιμορφώσεις – Πιστοποιήσεις</h2>
+      <ul class="bulleted">
+        <li><strong>2018</strong> — Moodle Course Creator Certificate (MCCC) — Πιστοποιημένος δημιουργός μαθημάτων Moodle — Κωδικός: X6QR-VNSM-FZRJ-YCKK</li>
+        <li><strong>2010</strong> — Υποψήφιος εκμάθησης γραφής BRAILLE — Πανελλήνιος Σύνδεσμος Τυφλών (Δυτ. Ελλάδας – Πάτρα)</li>
+        <li><strong>2010–Σήμερα</strong> — Εισηγητής ΛΑΕΚ (κωδικός 38328)</li>
+        <li><strong>2009</strong> — Εκπαιδευτής CCAI – IT Essentials (CISCO)</li>
+        <li><strong>2007</strong> — CCNA – Cisco Network Academy (Score 99.6%)</li>
+      </ul>
+    </section>
+
+    <section id="awards" class="card">
+      <h2>Εκπαιδευτής Ρομποτικής – STEM Διακρίσεις</h2>
+      <ul class="bulleted">
+        <li><strong>2018</strong> — 17ο ΔΣ Αγρινίου “Robo Agri(nio)culturists”: 1η θέση — Περιφερειακός Διαγωνισμός Δυτ. Ελλάδας (WRO 2018), Πάτρα</li>
+        <li><strong>2018</strong> — 17ο ΔΣ Αγρινίου “Robo Agri(nio)culturists”: 3η θέση — Πανελλήνιος Διαγωνισμός (WRO 2018), Αθήνα</li>
+        <li><strong>2018</strong> — ΙΕΚ Μεσολογγίου “MosqIOTes – Fielduino”: 1η θέση — Πανελλήνιος Διαγωνισμός Ανοιχτών Τεχνολογιών (ELL.AK), Αθήνα — <a href="https://github.com/iekmesol/Fielduino" target="_blank" rel="noopener">GitHub</a> • <a href="https://openedtech.ellak.gr/robotics_participant/diek-mesolongiou/" target="_blank" rel="noopener">Link έργου</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <p>&copy; <span id="year"></span> Καραχρήστος Χριστόφορος</p>
+        <nav class="links">
+          <a href="#about">Προσωπικά</a>
+          <a href="#experience">Εμπειρία</a>
+          <a href="#teaching">Διδακτική</a>
+          <a href="#education">Εκπαίδευση</a>
+          <a href="#publications">Δημοσιεύσεις</a>
+          <a href="#certs">Πιστοποιήσεις</a>
+          <a href="#awards">Διακρίσεις</a>
+        </nav>
+      </div>
+    </div>
   </footer>
+
+  <script src="assets/script.js"></script>
 </body>
 </html>
+"""
+
+style_css = """/* Basic reset & theme */
+:root{
+  --bg: #0b0f14;
+  --card: #0f1520;
+  --text: #e6eef8;
+  --muted: #a7b1be;
+  --accent: #5bbcff;
+  --chip: #1a2330;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+:root.light{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#262c36;
+  --muted:#556070;
+  --accent:#1565d8;
+  --chip:#eef3fb;
+  --shadow: 0 10px 20px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background: radial-gradient(1200px 800px at 10% -10%, rgba(91,188,255,.12), transparent 60%),
+              radial-gradient(1000px 600px at 120% 10%, rgba(255,179,91,.12), transparent 60%),
+              var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.header{
+  position:sticky;top:0;z-index:10;
+  backdrop-filter: blur(8px);
+  background: linear-gradient(to bottom, rgba(11,15,20,.9), rgba(11,15,20,.6));
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.header .hero{display:flex;gap:20px;align-items:center;padding:24px 0}
+.avatar{
+  width:72px;height:72px;border-radius:20px;
+  display:grid;place-items:center;
+  font-weight:800;font-size:28px;
+  background:linear-gradient(135deg,#3b82f6,#06b6d4);
+  color:white;box-shadow:var(--shadow)
+}
+.hero-text h1{margin:0 0 6px 0;font-size:28px}
+.subtitle{margin:0 0 10px 0;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--chip);padding:8px 12px;border-radius:999px;
+  text-decoration:none;color:var(--text);border:1px solid rgba(255,255,255,.08)
+}
+.toolbar{display:flex;gap:12px;align-items:center;padding-bottom:16px}
+.toolbar input[type="search"]{
+  flex:1;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);
+  background:var(--card);color:var(--text);outline:none
+}
+.theme-toggle{cursor:pointer;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:var(--card)}
+
+.card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;
+  padding:22px;
+  margin:22px 0;
+  box-shadow: var(--shadow);
+}
+h2{margin-top:0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:800px){.grid-2{grid-template-columns:1fr}}
+
+details{
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px;
+  padding:8px 12px;
+  margin:14px 0;
+  background:rgba(255,255,255,.02)
+}
+details[open]{background:rgba(255,255,255,.04)}
+summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;align-items:center;gap:12px;
+  font-weight:600
+}
+summary::-webkit-details-marker{display:none}
+summary span{
+  display:inline-flex;min-width:110px;justify-content:center;
+  padding:4px 10px;border-radius:999px;background:var(--chip);border:1px solid rgba(255,255,255,.08);
+  color:var(--muted);font-weight:600
+}
+.details-body{padding:8px 6px 8px 6px}
+ul{padding-left:20px;margin:8px 0}
+.bulleted li{margin:6px 0}
+.edu .edu-title{font-weight:600}
+.edu .edu-desc{color:var(--muted);margin:4px 0 10px}
+
+.pubs{padding-left:22px}
+.pubs li{margin:8px 0}
+.muted{color:var(--muted);font-size:.95rem}
+
+.footer{padding:30px 0 60px;border-top:1px solid rgba(255,255,255,.06);margin-top:30px}
+.footer-grid{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.links a{color:var(--muted);text-decoration:none;margin-right:12px}
+.links a:hover{color:var(--text)}
+"""
+
+script_js = """// Simple search filter and theme toggle
+const search = document.getElementById('search');
+const year = document.getElementById('year');
+year.textContent = new Date().getFullYear();
+
+function normalize(s){return s.toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');}
+
+search.addEventListener('input', e=>{
+  const q = normalize(e.target.value);
+  const cards = document.querySelectorAll('main .card');
+  cards.forEach(card=>{
+    if(!q){ card.style.display=''; return; }
+    const txt = normalize(card.textContent);
+    card.style.display = txt.includes(q) ? '' : 'none';
+  });
+});
+
+const root = document.documentElement;
+const toggle = document.querySelector('.theme-toggle');
+const KEY='cv-theme';
+
+function setTheme(light){
+  if(light){ root.classList.add('light'); }
+  else { root.classList.remove('light'); }
+  localStorage.setItem(KEY, light ? 'light' : 'dark');
+}
+
+toggle.addEventListener('click', ()=> setTheme(!root.classList.contains('light')));
+toggle.addEventListener('keypress', (e)=>{ if(e.key==='Enter' || e.key===' ') setTheme(!root.classList.contains('light')); });
+
+// Restore stored theme
+const saved = localStorage.getItem(KEY);
+if(saved==='light') setTheme(true);
+"""
+
+# Write files
+with open(os.path.join(base_dir, "index.html"), "w", encoding="utf-8") as f:
+    f.write(index_html)
+
+with open(os.path.join(assets_dir, "style.css"), "w", encoding="utf-8") as f:
+    f.write(style_css)
+
+with open(os.path.join(assets_dir, "script.js"), "w", encoding="utf-8") as f:
+    f.write(script_js)
+
+# Zip directory
+zip_path = "/mnt/data/karachristos_site.zip"
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
+    for root_dir, _, files in os.walk(base_dir):
+        for fname in files:
+            full_path = os.path.join(root_dir, fname)
+            arcname = os.path.relpath(full_path, base_dir)
+            z.write(full_path, arcname)
+
+zip_path
