@@ -128,6 +128,20 @@ ol.pubs li{
 ul > li::marker{ color: var(--accent); }
 ol > li::marker{ color: var(--accent); font-weight: 700; }
 
+    .edu-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.edu-table td {
+  padding: 8px 12px;
+  vertical-align: top;
+  border: none;       /* χωρίς γραμμές */
+}
+.edu-table td:first-child {
+  width: 30%;
+  font-weight: bold;
+  color: #2c3e50;
+}
   </style>
 </head>
 <body>
@@ -180,25 +194,32 @@ ol > li::marker{ color: var(--accent); font-weight: 700; }
     </section>
 
     <!-- Εκπαίδευση -->
-    <section id="education">
-      <h2>Εκπαίδευση</h2>
-      <ul>
-        <li><strong>2023 – σήμερα</strong> — Υποψήφιος Διδάκτορας, ΠΤΔΕ – Πανεπιστήμιο Πατρών
-          <div class="muted">Διατριβή: «Μελέτη της αποτελεσματικότητας των περιβαλλόντων διαδικτυακής μάθησης με τεχνικές Τεχνητής Νοημοσύνης»</div>
-        </li>
-        <li><strong>2023 – 2024</strong> — ΜΔΕ στην Ειδική Αγωγή, Frederick University (Κύπρος)</li>
-        <li><strong>2014 (3 μην.)</strong> — Erasmus Placements Scholar, Eindhoven University of Technology</li>
-        <li><strong>2012 – 2015</strong> — ΜΔΕ Υπολογιστικά Μαθηματικά – ΤΠΕ στην Εκπαίδευση, Μαθηματικό Τμήμα, Παν. Πατρών
-          <div class="muted">Διπλωματική: «Σχεδίαση, υλοποίηση και αξιολόγηση Ρομποτικής Συσκευής για τη Ρομποτική Πλατφόρμα e-ProBotLab»</div>
-        </li>
-        <li><strong>2007 – 2009</strong> — ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Τμήμα Τηλεπικοινωνιών & Ψηφιακών Συστημάτων, Παν. Πειραιώς
-          <div class="muted">Διπλωματική: «Υλοποίηση και Μοντελοποίηση web services με BPEL: χρήση του IBM WebSphere»</div>
-        </li>
-        <li><strong>2001 – 2006</strong> — Δίπλωμα στις Ψηφιακές Επικοινωνίες στην Εκπαίδευση, Τμήμα Διδακτικής της Τεχνολογίας & Ψηφιακών Συστημάτων, Παν. Πειραιώς
-          <div class="muted">Πτυχιακή: «Βελτιστοποίηση απόδοσης Java server» • Κάτοχος παιδαγωγικής επάρκειας</div>
-        </li>
-      </ul>
-    </section>
+   <section id="education">
+  <h2>Εκπαίδευση</h2>
+  <table class="edu-table">
+    <tr>
+      <td><strong>2023 – Σήμερα</strong></td>
+      <td>Υποψήφιος Διδάκτορας, Παν. Πατρών</td>
+    </tr>
+    <tr>
+      <td><strong>2023 – 2024</strong></td>
+      <td>ΜΔΕ στην Ειδική Αγωγή, Frederick University</td>
+    </tr>
+    <tr>
+      <td><strong>2012 – 2015</strong></td>
+      <td>ΜΔΕ Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση, Παν. Πατρών</td>
+    </tr>
+    <tr>
+      <td><strong>2007 – 2009</strong></td>
+      <td>ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Παν. Πειραιώς</td>
+    </tr>
+    <tr>
+      <td><strong>2001 – 2006</strong></td>
+      <td>Δίπλωμα, Παν. Πειραιώς</td>
+    </tr>
+  </table>
+</section>
+
 
     <!-- Επαγγελματική Εμπειρία (πλήρης από το DOC) -->
     <section id="experience">
