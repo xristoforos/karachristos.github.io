@@ -196,37 +196,27 @@ nav {
   margin-top: 1.5rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 15px;
   justify-content: center;
 }
 
 nav a {
-  position: relative;
-  font-weight: 600;
-  font-size: 1.05rem;
-  color: #ecf0f1;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  color: #fff;
   text-decoration: none;
-  padding: 5px 0;
-  transition: color 0.3s ease;
-}
-
-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0%;
-  height: 2px;
-  background: #f39c12;
-  transition: width 0.3s ease;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.2);
 }
 
 nav a:hover {
-  color: #f39c12;
-}
-
-nav a:hover::after {
-  width: 100%;
+  background: rgba(243, 156, 18, 0.8);
+  color: #fff;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
 }
 
 html {
