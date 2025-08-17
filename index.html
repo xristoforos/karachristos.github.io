@@ -86,6 +86,48 @@
     footer{
       text-align:center; padding:22px; color:var(--muted);
     }
+    /* === Bullets: πιο άνετη ανάγνωση === */
+:root{
+  --li-gap: 12px;       /* απόσταση μεταξύ bullets */
+  --li-line: 1.75;      /* line-height στα bullets */
+  --li-indent: 1.25rem; /* εσοχή λίστας */
+}
+
+/* Γενικά για όλες τις λίστες */
+ul, ol{
+  padding-left: var(--li-indent);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  list-style-position: outside;
+}
+
+/* Κάθε στοιχείο λίστας λίγο πιο αραιό */
+li{
+  margin: var(--li-gap) 0;
+  line-height: var(--li-line);
+}
+
+/* Nested λίστες (δεύτερο επίπεδο): μικρότερη εσοχή & λίγο πιο “σφιχτές” */
+ul ul, ol ol, ul ol, ol ul{
+  padding-left: calc(var(--li-indent) + .5rem);
+  margin-top: calc(var(--li-gap) * 0.5);
+  margin-bottom: calc(var(--li-gap) * 0.5);
+}
+
+/* Δημοσιεύσεις: ακόμα λίγο παραπάνω κενό για ανάσα */
+ol.pubs li{
+  margin: calc(var(--li-gap) + 4px) 0;
+}
+
+/* Λίστες μέσα σε .project-card ή .card */
+.project-card li, section li{
+  line-height: var(--li-line);
+}
+
+/* Προαιρετικό: ελαφρύ styling στον marker (μοντέρνα εμφάνιση) */
+ul > li::marker{ color: var(--accent); }
+ol > li::marker{ color: var(--accent); font-weight: 700; }
+
   </style>
 </head>
 <body>
