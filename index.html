@@ -1,109 +1,134 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Βιογραφικό | Καραχρήστος Χριστόφορος</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Βιογραφικό - Καραχρήστος Χριστόφορος</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      display: flex;
+    }
+    nav {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 250px;
+      background: #2c3e50;
+      padding-top: 30px;
+      overflow-y: auto;
+    }
+    nav h2 {
+      color: #ecf0f1;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+    nav li {
+      margin: 10px 0;
+    }
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      display: block;
+      padding: 10px 20px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #34495e;
+    }
+    main {
+      margin-left: 250px;
+      padding: 20px 40px;
+      max-width: 1000px;
+    }
+    section {
+      background: #fff;
+      margin-bottom: 30px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    section h2 {
+      color: #2c3e50;
+      border-bottom: 2px solid #4ca1af;
+      padding-bottom: 5px;
+      margin-top: 0;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #2c3e50;
+      color: white;
+      border-radius: 10px;
+    }
+
+    /* === Bullets: πιο άνετη ανάγνωση === */
     :root{
-      --bg:#f4f6f9;
-      --text:#1f2937;
-      --muted:#5b6876;
-      --primary:#2c3e50;
-      --accent:#4ca1af;
-      --card:#ffffff;
-      --border:#e5e7eb;
+      --li-gap: 14px;       /* απόσταση μεταξύ bullets */
+      --li-line: 1.75;      /* line-height */
+      --li-indent: 1.25rem; /* εσοχή λίστας */
+      --accent: #4ca1af;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background: var(--bg); color: var(--text); display:flex; min-height:100vh;
+    ul, ol{
+      padding-left: var(--li-indent);
+      margin-top: 8px;
+      margin-bottom: 8px;
+      list-style-position: outside;
     }
-    nav{
-      position:sticky; top:0; align-self:flex-start;
-      width:270px; height:100vh; overflow:auto;
-      background:linear-gradient(180deg,#2c3e50,#243442);
-      padding:26px 16px; box-shadow:0 10px 25px rgba(0,0,0,.18);
+    li{
+      margin: var(--li-gap) 0;
+      line-height: var(--li-line);
     }
-    nav h2{color:#ecf0f1; margin:0 0 14px 10px; font-size:18px; letter-spacing:.4px}
-    nav ul{list-style:none; padding:0; margin:0}
-    nav li{margin:6px 0}
-    nav a{
-      display:block; padding:10px 14px; margin:2px 6px; border-radius:10px;
-      text-decoration:none; color:#ecf0f1; font-weight:600; font-size:14px;
-      transition:background .2s ease, transform .05s ease;
+    ul ul, ol ol, ul ol, ol ul{
+      padding-left: calc(var(--li-indent) + .5rem);
+      margin-top: calc(var(--li-gap) * 0.5);
+      margin-bottom: calc(var(--li-gap) * 0.5);
     }
-    nav a:hover{background:#34495e; transform:translateX(2px)}
-    main{flex:1; padding:28px 40px; max-width:1100px; margin:0 auto}
-    header.main-header{
-      background: linear-gradient(135deg,#2c3e50,#4ca1af);
-      color:white; border-radius:16px; padding:28px 28px; margin-bottom:24px;
-      box-shadow:0 10px 24px rgba(44,62,80,.25);
+    ol.pubs li{ margin: calc(var(--li-gap) + 4px) 0; }
+    ul > li::marker{ color: var(--accent); }
+    ol > li::marker{ color: var(--accent); font-weight: 700; }
+
+    /* === Projects cards === */
+    .project-card {
+      background: #fdfdfd;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
-    header .title{margin:0 0 6px 0; font-size:28px}
-    header .subtitle{margin:0 0 12px 0; opacity:.95}
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{
-      background:rgba(255,255,255,.14); color:white; border:1px solid rgba(255,255,255,.25);
-      padding:8px 12px; border-radius:999px; font-size:14px; text-decoration:none;
+    .project-card h3 {
+      margin-top: 0;
+      color: #2c3e50;
     }
-    section{
-      background:var(--card); border:1px solid var(--border); border-radius:14px;
-      padding:20px 22px; margin:18px 0; box-shadow:0 6px 14px rgba(0,0,0,.06);
+    .project-card a {
+      color: #4ca1af;
+      font-weight: bold;
+      text-decoration: none;
     }
-    section h2{
-      margin:0 0 10px 0; color:var(--primary); border-bottom:2px solid var(--accent);
-      padding-bottom:6px; font-size:22px;
+    .project-card a:hover {
+      text-decoration: underline;
     }
-    ul{padding-left:20px}
-    li{margin:6px 0}
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
-    @media (max-width:900px){
-      nav{position:fixed; inset:auto 0 0 0; height:auto; width:100%; display:block; z-index:50}
-      nav h2{display:none}
-      nav ul{display:flex; overflow:auto; gap:8px}
-      nav a{white-space:nowrap}
-      main{padding:120px 16px 20px}
-    }
-    .muted{color:var(--muted)}
-    .project-card{
-      background:#fefefe; border:1px solid var(--border); border-radius:12px;
-      padding:16px 16px; margin:14px 0; box-shadow:0 4px 10px rgba(0,0,0,.05);
-    }
-    .project-card h3{margin:0 0 6px 0; color:var(--primary)}
-    .project-card p{margin:8px 0}
-    .project-card a{color:var(--accent); font-weight:700; text-decoration:none}
-    .project-card a:hover{text-decoration:underline}
-    ol.pubs{padding-left:22px}
-    ol.pubs li{margin:6px 0}
-    footer{text-align:center; padding:22px; color:var(--muted);}
-:root{
-  --li-gap: 12px;
-  --li-line: 1.75;
-  --li-indent: 1.25rem;
-}
-ul, ol{padding-left: var(--li-indent);margin-top: 8px;margin-bottom: 8px;list-style-position: outside;}
-li{margin: var(--li-gap) 0;line-height: var(--li-line);}
-ul ul, ol ol, ul ol, ol ul{padding-left: calc(var(--li-indent) + .5rem);margin-top: calc(var(--li-gap) * 0.5);margin-bottom: calc(var(--li-gap) * 0.5);}
-ol.pubs li{margin: calc(var(--li-gap) + 4px) 0;}
-.project-card li, section li{line-height: var(--li-line);}
-ul > li::marker{ color: var(--accent); }
-ol > li::marker{ color: var(--accent); font-weight: 700; }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
   <nav>
-    <h2>Πλοήγηση</h2>
+    <h2>Μενού</h2>
     <ul>
       <li><a href="#personal">Προσωπικά</a></li>
       <li><a href="#education">Εκπαίδευση</a></li>
-      <li><a href="#experience">Επαγγελματική Εμπειρία</a></li>
+      <li><a href="#work">Επαγγελματική Εμπειρία</a></li>
       <li><a href="#teaching">Διδακτική Εμπειρία</a></li>
       <li><a href="#projects">Ερευνητικά & Έργα</a></li>
       <li><a href="#publications">Δημοσιεύσεις</a></li>
-      <li><a href="#certs">Επιμορφώσεις & Πιστοποιήσεις</a></li>
+      <li><a href="#seminars">Σεμινάρια & Πιστοποιήσεις</a></li>
       <li><a href="#skills">Δεξιότητες</a></li>
       <li><a href="#languages">Ξένες Γλώσσες</a></li>
       <li><a href="#awards">Διακρίσεις</a></li>
@@ -111,106 +136,129 @@ ol > li::marker{ color: var(--accent); font-weight: 700; }
   </nav>
 
   <main>
-    <header class="main-header">
-      <h1 class="title">Καραχρήστος Χριστόφορος</h1>
-      <p class="subtitle">Instructional Designer • Εκπαιδευτής Πληροφορικής • Ερευνητής</p>
-      <div class="chips">
-        <a class="chip" href="mailto:karachristos.x@gmail.com">karachristos.x@gmail.com</a>
-        <a class="chip" href="mailto:karachrist@eap.gr">karachrist@eap.gr</a>
-        <span class="chip">📞 6947345322</span>
-        <span class="chip">📞 2641022145</span>
-        <span class="chip">📍 Αγρίνιο</span>
-        <a class="chip" href="skype:xristoforos.karachristos?chat">Skype: xristoforos.karachristos</a>
-      </div>
+    <header>
+      <h1>Καραχρήστος Χριστόφορος</h1>
+      <p>Instructional Designer | Εκπαιδευτής Πληροφορικής</p>
+      <p>📧 karachristos.x@gmail.com | 📞 6947345322</p>
     </header>
 
-    <!-- Προσωπικά -->
     <section id="personal">
       <h2>Προσωπικά Στοιχεία</h2>
-      <div class="grid-2">
-        <div>
-          <p><strong>Ονοματεπώνυμο:</strong> Καραχρήστος Χριστόφορος</p>
-          <p><strong>Ημερομηνία γέννησης:</strong> 28/05/1982</p>
-          <p><strong>Οικογενειακή κατάσταση:</strong> Έγγαμος</p>
-        </div>
-        <div>
-          <p><strong>Διεύθυνση:</strong> Γρηγορίου Λαμπράκη 16, 30100, Αγρίνιο</p>
-          <p><strong>E-mail:</strong> karachristos.x@gmail.com, karachrist@eap.gr</p>
-          <p><strong>Στρατιωτικές υποχρεώσεις:</strong> Εκπληρωμένες</p>
-        </div>
-      </div>
+      <p><strong>Ημ. γέννησης:</strong> 28/05/1982</p>
+      <p><strong>Διεύθυνση:</strong> Αγρίνιο, Ελλάδα</p>
+      <p><strong>Οικογενειακή κατάσταση:</strong> Έγγαμος</p>
     </section>
 
-    <!-- Εκπαίδευση -->
     <section id="education">
       <h2>Εκπαίδευση</h2>
       <ul>
-        <li><strong>2023 – σήμερα</strong> — Υποψήφιος Διδάκτορας, ΠΤΔΕ – Πανεπιστήμιο Πατρών
-          <div class="muted">Διατριβή: «Μελέτη της αποτελεσματικότητας των περιβαλλόντων διαδικτυακής μάθησης με τεχνικές Τεχνητής Νοημοσύνης»</div>
-        </li>
-        <li><strong>2023 – 2024</strong> — ΜΔΕ στην Ειδική Αγωγή, Frederick University (Κύπρος)</li>
-        <li><strong>2014 (3 μην.)</strong> — Erasmus Placements Scholar, Eindhoven University of Technology</li>
-        <li><strong>2012 – 2015</strong> — ΜΔΕ Υπολογιστικά Μαθηματικά – ΤΠΕ στην Εκπαίδευση, Μαθηματικό Τμήμα, Παν. Πατρών
-          <div class="muted">Διπλωματική: «Σχεδίαση, υλοποίηση και αξιολόγηση Ρομποτικής Συσκευής για τη Ρομποτική Πλατφόρμα e-ProBotLab»</div>
-        </li>
-        <li><strong>2007 – 2009</strong> — ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Τμήμα Τηλεπικοινωνιών & Ψηφιακών Συστημάτων, Παν. Πειραιώς
-          <div class="muted">Διπλωματική: «Υλοποίηση και Μοντελοποίηση web services με BPEL: χρήση του IBM WebSphere»</div>
-        </li>
-        <li><strong>2001 – 2006</strong> — Δίπλωμα στις Ψηφιακές Επικοινωνίες στην Εκπαίδευση, Τμήμα Διδακτικής της Τεχνολογίας & Ψηφιακών Συστημάτων, Παν. Πειραιώς
-          <div class="muted">Πτυχιακή: «Βελτιστοποίηση απόδοσης Java server» • Κάτοχος παιδαγωγικής επάρκειας</div>
-        </li>
+        <li><strong>2023 – Σήμερα:</strong> Υποψήφιος Διδάκτορας, Παν. Πατρών</li>
+        <li><strong>2023 – 2024:</strong> ΜΔΕ στην Ειδική Αγωγή, Frederick University</li>
+        <li><strong>2012 – 2015:</strong> ΜΔΕ Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση, Παν. Πατρών</li>
+        <li><strong>2007 – 2009:</strong> ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Παν. Πειραιώς</li>
+        <li><strong>2001 – 2006:</strong> Δίπλωμα, Παν. Πειραιώς</li>
       </ul>
     </section>
 
-    <!-- Επαγγελματική Εμπειρία -->
-    <section id="experience">
+    <section id="work">
       <h2>Επαγγελματική Εμπειρία</h2>
       <ul>
-        <li><strong>WIND MAINSYS</strong> — <em>Blocked</em></li>
-        <!-- ... (όπως πριν, δεν αλλάζει εδώ) ... -->
+        <li><strong>2022 – Σήμερα:</strong> Ελληνικό Ανοικτό Πανεπιστήμιο – Instructional Designer</li>
+        <li><strong>2018 – Σήμερα:</strong> Εργαστήριο Εκπαιδευτικού Υλικού – Υπεύθυνος MOOCs</li>
+        <li><strong>2009 – Σήμερα:</strong> Συνεργασίες με Πανεπιστήμια, ΙΕΚ, ΣΔΕ</li>
+        <li><strong>2006 – Σήμερα:</strong> Καθηγητής ΠΕ86 Πληροφορικής στη Δευτεροβάθμια</li>
       </ul>
     </section>
 
-    <!-- Διδακτική Εμπειρία -->
     <section id="teaching">
       <h2>Διδακτική Εμπειρία</h2>
       <ul>
-        <!-- ... (όπως πριν) ... -->
+        <li>Καθηγητής σε Γυμνάσια & Λύκεια</li>
+        <li>Εργαστηριακός Συνεργάτης ΤΕΙ Μεσολογγίου</li>
+        <li>CISCO Instructor – IT Essentials</li>
+        <li>Εκπαιδευτής ΙΕΚ, ΣΔΕ, ΚΔΒΜ</li>
       </ul>
     </section>
 
-    <!-- Ερευνητικά & Έργα με links -->
     <section id="projects">
       <h2>Ερευνητικά & Erasmus+ Έργα</h2>
 
-      <div class="project-card"><h3>XR2Learn (Horizon)</h3><p>Ενσωμάτωση Επαυξημένης/Εικονικής Πραγματικότητας (XR)...</p><p><a href="https://xr2learn.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>Drones4STEM (Erasmus+)</h3><p>Ανάπτυξη δεξιοτήτων STEM...</p><p><a href="https://drones4stem.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>POSITIVE (Erasmus+)</h3><p>Πρόληψη του στρες...</p><p><a href="https://positiveproject.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>augMENTOR (Horizon)</h3><p>Επαυξημένη νοημοσύνη...</p><p><a href="https://augmentor-project.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>LeADS (Digital Europe)</h3><p>Ανάπτυξη προηγμένων...</p><p><a href="https://leadsproject.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>PARADIGM (Erasmus+)</h3><p>Σχέδιο ευκαιριών...</p><p><a href="https://paradigmproject.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>DIGIHALL (Erasmus+)</h3><p>Digital Health...</p><p><a href="https://digihallproject.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>BEQUEL (Erasmus+)</h3><p>Benchmarking...</p><p><a href="https://bequelproject.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>VISITOR (Erasmus+)</h3><p>Ψηφιακά μουσεία...</p><p><a href="https://visitor-project.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>Faville (Erasmus+)</h3><p>Διευκολυντές...</p><p><a href="https://faville-project.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>Participa (Erasmus+)</h3><p>Εργαλεία επαγγελματικής...</p><p><a href="https://participa-project.eu/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>Realiscape Typorama – ΕΕΥΕΜ/ΕΑΠ (MIS 80090)</h3><p>Υπεργολαβία...</p><p><a href="https://www.eeiem.org/" target="_blank" rel="noopener">🔗 Σύνδεσμος περιγραφής έργου</a></p></div>
-      <div class="project-card"><h3>Teleicce (Interreg Greece–Italy)</h3><p>Προώθηση τηλεργασίας...</p><p><a href="https://greece-italy.eu/teleicce/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
-      <div class="project-card"><h3>REAMOOC (Erasmus+)</h3><p>Αφρικανικό δίκτυο...</p><p><a href="https://www.reamooc.org/" target="_blank" rel="noopener">🔗 Επίσημος σύνδεσμος έργου</a></p></div>
+      <div class="project-card">
+        <h3>XR2Learn</h3>
+        <p>Καινοτόμο έργο για την αξιοποίηση της Επαυξημένης και Εικονικής Πραγματικότητας στην εκπαίδευση. 
+           Στόχος είναι η ενσωμάτωση XR εφαρμογών στη διδασκαλία και μάθηση.</p>
+        <p><a href="https://xr2learn.eu" target="_blank">🔗 Επισκεφθείτε τον ιστότοπο</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>Drones4STEM</h3>
+        <p>Εκπαιδευτικό έργο που αξιοποιεί drones για την ανάπτυξη δεξιοτήτων STEM (Science, Technology, Engineering, Mathematics) 
+           σε μαθητές δευτεροβάθμιας εκπαίδευσης.</p>
+        <p><a href="https://drones4stem.eu" target="_blank">🔗 Επισκεφθείτε τον ιστότοπο</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>POSITIVE</h3>
+        <p>Ευρωπαϊκό έργο για την ενσωμάτωση ψηφιακών εργαλείων στην ψυχοκοινωνική φροντίδα, 
+           με στόχο την υποστήριξη ευάλωτων ομάδων και επαγγελματιών υγείας.</p>
+        <p><a href="https://positiveproject.eu" target="_blank">🔗 Επισκεφθείτε τον ιστότοπο</a></p>
+      </div>
+
+      <div class="project-card">
+        <h3>augMENTOR</h3>
+        <p>Πλατφόρμα που αξιοποιεί Extended Reality (XR) για την επαγγελματική κατάρτιση και εκπαίδευση, 
+           παρέχοντας εμπλουτισμένα μαθησιακά περιβάλλοντα.</p>
+        <p><a href="https://augmentor-project.eu" target="_blank">🔗 Επισκεφθείτε τον ιστότοπο</a></p>
+      </div>
     </section>
 
-    <!-- Δημοσιεύσεις, Επιμορφώσεις, Δεξιότητες, Γλώσσες, Διακρίσεις όπως πριν -->
-    <section id="publications">...</section>
-    <section id="certs">...</section>
-    <section id="skills">...</section>
-    <section id="languages">...</section>
-    <section id="awards">...</section>
+    <section id="publications">
+      <h2>Δημοσιεύσεις</h2>
+      <ul>
+        <li>Enhancing Collaborative Learning (AMBIENT 2014)</li>
+        <li>Bridging Virtual & Physical Classrooms (IE 2015)</li>
+        <li>Junior Coding Academy for Scratch & Arduino (ICODL 2017)</li>
+        <li>Technology and School Unit Improvement (Soc. Sci. 2019)</li>
+        <li>EDUCON 2024 (AI & Drones4STEM)</li>
+      </ul>
+    </section>
 
-    <footer>&copy; <span id="year"></span> Καραχρήστος Χριστόφορος</footer>
+    <section id="seminars">
+      <h2>Σεμινάρια & Πιστοποιήσεις</h2>
+      <ul>
+        <li>CISCO Instructor – IT Essentials</li>
+        <li>Πιστοποιήσεις e-learning & Moodle</li>
+        <li>Σεμινάρια Εκπαιδευτικής Ρομποτικής & STEM</li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2>Δεξιότητες</h2>
+      <ul>
+        <li>Instructional Design</li>
+        <li>e-Learning Development (Moodle, XR)</li>
+        <li>STEM & Ρομποτική</li>
+        <li>Web Development (HTML, CSS, JS)</li>
+      </ul>
+    </section>
+
+    <section id="languages">
+      <h2>Ξένες Γλώσσες</h2>
+      <p>Αγγλικά – Proficiency (University of Michigan)</p>
+    </section>
+
+    <section id="awards">
+      <h2>Διακρίσεις</h2>
+      <ul>
+        <li>1η θέση Περιφερειακός Διαγωνισμός Εκπαιδευτικής Ρομποτικής (2018)</li>
+        <li>3η θέση Πανελλήνιος Διαγωνισμός Εκπαιδευτικής Ρομποτικής (2018)</li>
+        <li>1η θέση Πανελλήνιος Διαγωνισμός Ανοιχτών Τεχνολογιών (2018)</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Καραχρήστος Χριστόφορος</p>
+    </footer>
   </main>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
