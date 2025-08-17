@@ -132,16 +132,29 @@ ol > li::marker{ color: var(--accent); font-weight: 700; }
   width: 100%;
   border-collapse: collapse;
 }
-.edu-table td {
-  padding: 8px 12px;
+/* Δίστιλος “αόρατος” πίνακας με μικρό κενό */
+.twocol-table {
+  width: 100%;
+  border-collapse: collapse; 
+  table-layout: fixed;       /* σταθερή αναλογία στηλών */
+  margin-top: 8px;
+}
+.twocol-table td {
+  padding: 6px 10px;         /* μικρό, “σφιχτό” padding */
   vertical-align: top;
-  border: none;       /* χωρίς γραμμές */
+  border: none;              /* χωρίς γραμμές */
 }
-.edu-table td:first-child {
-  width: 30%;
-  font-weight: bold;
+.twocol-table td:first-child {
+  width: 22%;                /* στενή στήλη για έτη/φορέα */
+  font-weight: 700;
   color: #2c3e50;
+  white-space: nowrap;       /* να μη σπάει η χρονολογία */
 }
+.twocol-table td:last-child {
+  width: 78%;
+}
+.twocol-table .muted { color: var(--muted); }
+
   </style>
 </head>
 <body>
@@ -194,86 +207,385 @@ ol > li::marker{ color: var(--accent); font-weight: 700; }
     </section>
 
     <!-- Εκπαίδευση -->
-   <section id="education">
+  <section id="education">
   <h2>Εκπαίδευση</h2>
-  <table class="edu-table">
+  <table class="twocol-table">
     <tr>
-      <td><strong>2023 – Σήμερα</strong></td>
-      <td>Υποψήφιος Διδάκτορας, Παν. Πατρών</td>
+      <td>2023 – Σήμερα</td>
+      <td>
+        <strong>Υποψήφιος Διδάκτορας, ΠΤΔΕ – Πανεπιστήμιο Πατρών</strong><br>
+        <span class="muted">Διατριβή:</span> «Μελέτη της αποτελεσματικότητας των περιβαλλόντων διαδικτυακής μάθησης με τεχνικές ΤΝ».
+      </td>
     </tr>
     <tr>
-      <td><strong>2023 – 2024</strong></td>
-      <td>ΜΔΕ στην Ειδική Αγωγή, Frederick University</td>
+      <td>2023 – 2024</td>
+      <td>
+        <strong>ΜΔΕ στην Ειδική Αγωγή, Frederick University (Κύπρος)</strong><br>
+        Εστίαση σε διαφοροποιημένη διδασκαλία, ενσωμάτωση ΤΠΕ και ψυχοπαιδαγωγικές προσεγγίσεις.
+      </td>
     </tr>
     <tr>
-      <td><strong>2012 – 2015</strong></td>
-      <td>ΜΔΕ Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση, Παν. Πατρών</td>
+      <td>2014 (3 μην.)</td>
+      <td>
+        <strong>Erasmus Placements Scholar, Eindhoven University of Technology</strong><br>
+        Πρακτική σε ανάπτυξη λογισμικού/UX για εφαρμογές υγείας & εκπαίδευσης.
+      </td>
     </tr>
     <tr>
-      <td><strong>2007 – 2009</strong></td>
-      <td>ΜΔΕ Ψηφιακές Επικοινωνίες & Δίκτυα, Παν. Πειραιώς</td>
+      <td>2012 – 2015</td>
+      <td>
+        <strong>ΜΔΕ «Υπολογιστικά Μαθηματικά & ΤΠΕ στην Εκπαίδευση», Παν. Πατρών</strong><br>
+        <span class="muted">Διπλωματική:</span> «Σχεδίαση, υλοποίηση και αξιολόγηση ρομποτικής συσκευής για e-ProBotLab».
+      </td>
     </tr>
     <tr>
-      <td><strong>2001 – 2006</strong></td>
-      <td>Δίπλωμα, Παν. Πειραιώς</td>
+      <td>2007 – 2009</td>
+      <td>
+        <strong>ΜΔΕ «Ψηφιακές Επικοινωνίες & Δίκτυα», Παν. Πειραιώς</strong><br>
+        <span class="muted">Διπλωματική:</span> «Web services με BPEL: χρήση IBM WebSphere».
+      </td>
+    </tr>
+    <tr>
+      <td>2001 – 2006</td>
+      <td>
+        <strong>Δίπλωμα, Τμήμα Διδακτικής της Τεχνολογίας & Ψηφιακών Συστημάτων, Παν. Πειραιώς</strong><br>
+        <span class="muted">Πτυχιακή:</span> «Βελτιστοποίηση απόδοσης Java server» • Κάτοχος παιδαγωγικής επάρκειας.
+      </td>
     </tr>
   </table>
 </section>
 
 
+
     <!-- Επαγγελματική Εμπειρία (πλήρης από το DOC) -->
     <section id="experience">
-      <h2>Επαγγελματική Εμπειρία</h2>
-
-      <ul>
-        <li><strong>WIND MAINSYS</strong> — <em>Blocked</em></li>
-        <li><strong>01/10/2023 – 30/09/2025</strong> — Horizon: <em>XR2Learn – Extended Reality for Learning in New Dimensions</em> — Συμμετοχή στα παραδοτέα</li>
-        <li><strong>01/10/2023 – 30/09/2025</strong> — <em>DRONES 4 STEM</em>: Training the next-generation experts in drone technologies & STEM — Συμμετοχή στα παραδοτέα</li>
-        <li><strong>24/02/2023 – 24/06/2023</strong> — Εμπειρογνώμονας ΓΣΕΒΕΕ — Νέο επαγγελματικό περίγραμμα «Ειδικός υποστήριξης συστημάτων & περιεχομένου ηλεκτρονικής μάθησης»</li>
-        <li><strong>21/07/2023 – 31/12/2023</strong> — Erasmus+: <em>POSITIVE</em> — Συμμετοχή στα παραδοτέα</li>
-        <li><strong>27/04/2023 – 30/06/2023</strong> — Έργο ΙΕΠ — Ανάπτυξη λογισμικού για προσχολική, επιμόρφωση & υποστήριξη εκπαιδευτικών</li>
-        <li><strong>2022 – σήμερα</strong> — Τομέας Νέων Προγραμμάτων Σπουδών, ΕΑΠ — <em>Course Instructional Designer</em></li>
-        <li><strong>01/10/2022 – 30/05/2024</strong> — Digital Europe: <em>LeADS – Leading European Advanced Digital Skills</em></li>
-        <li><strong>01/10/2022 – σήμερα</strong> — Horizon: <em>augMENTOR – Augmented Intelligence for Pedagogically Sustained Training and Education</em></li>
-        <li><strong>01/11/2021 – 01/11/2024</strong> — Erasmus+: <em>PARADIGM</em> — Project Management, παραδοτέα</li>
-        <li><strong>01/11/2021 – 01/11/2024</strong> — Erasmus+: <em>DIGIHALL</em> — Project Management, παραδοτέα</li>
-        <li><strong>22/11/2021 – 30/11/2021</strong> — Erasmus+: <em>BEQUEL</em> — Μεταφράσεις/επιμέλεια (Ελ–Αγγ–Ελ) O1/A4 Benchmarking questionnaire</li>
-        <li><strong>01/03/2021 – 28/02/2023</strong> — Erasmus+: <em>VISITOR</em> — Project Management, παραδοτέα</li>
-        <li><strong>01/10/2019 – 30/11/2021</strong> — Erasmus+: <em>Faville</em> — Project Management, παραδοτέα</li>
-        <li><strong>01/09/2019 – 31/08/2022</strong> — Erasmus+: <em>Participa</em> — Professional Development Tools for ECCE participation rights</li>
-        <li><strong>01/04/2021 – 31/05/2021</strong> — Realiscape Typorama – ΕΕΥΕΜ/ΕΑΠ — MIS 80090 — Υπεργολαβία εκπαιδευτικού έργου</li>
-        <li><strong>01/07/2020 – 30/11/2020</strong> — Interreg Greece–Italy: <em>Teleicce</em> — Teleworking & MOOC Training</li>
-        <li><strong>05/08/2019 – 15/09/2019</strong> — Erasmus+: <em>REAMOOC</em> — Τεχνική υποστήριξη</li>
-        <li><strong>27/11/2018 – 31/05/2019</strong> — Μελέτη–Οδηγός για ψηφιακή/εξ αποστάσεως εκπαίδευση (ΕΠ ΑΝΑΔ–ΕΔΒΜ 2014–2020)</li>
-        <li><strong>01/01/2018 – σήμερα</strong> — ΕΕΥΕΜ – Υπεύθυνος Δημιουργίας & Διαχείρισης Ηλεκτρονικών Μαθημάτων • Υπεύθυνος υποέργου MOOC</li>
-        <li><strong>01/01/2017 – 31/12/2017</strong> — Junior Coding Academy – Google RISE 2016 (InterMedi@KT – Ελλάδα)</li>
-        <li><strong>23/12/2016 – 30/11/2017</strong> — ΕΑΠ: Μεικτή μάθηση με Scratch — Σχεδίαση & υλοποίηση</li>
-        <li><strong>2016 – 2018</strong> — Ομάδα Νέων Προγραμμάτων Σπουδών – ΕΑΠ — Course Instructional Designer</li>
-        <li><strong>2015 – 2016</strong> — Erasmus+ (Αθλητισμός): Ίσες συμμετοχές, αντιμετώπιση διακρίσεων/βίας στον αθλητισμό</li>
-        <li><strong>01/03/2015 – 31/05/2015</strong> — Ανοικτά Ακαδημαϊκά Μαθήματα – Παν. Πατρών — Ανάπτυξη μαθημάτων τύπου Β/Γ</li>
-        <li><strong>2014 – 2016</strong> — ΕΕΥΕΜ – ΕΑΠ — Προγραμματιστής Λογισμικού</li>
-        <li><strong>01/06/2014 – 31/08/2014</strong> — TU Eindhoven (REVATECH) — 3μηνη Πρακτική, Προγραμματιστής</li>
-        <li><strong>01/10/2013 – 31/12/2015</strong> — ΕΕΥΕΜ – ΕΑΠ — Προγραμματιστής Λογισμικού – Υποέργο 5</li>
-        <li><strong>01/06/2009 – 31/08/2009</strong> — MACTEL — Μηχανικός Δικτύων, Τεχνολόγος Πληροφορικής, Τεχνικός εγκαταστάσεων</li>
-        <li><strong>2008 – 2009</strong> — ΕΛ. Στρατός – Σχολή Αξκων Έρευνας Πληροφορικής — Αναλυτής Προγρ/στής — Network/Domain/Mail/File Server Admin</li>
-      </ul>
-    </section>
+  <h2>Επαγγελματική Εμπειρία</h2>
+  <table class="twocol-table">
+    <tr>
+      <td>2022 – Σήμερα</td>
+      <td>
+        <strong>Ελληνικό Ανοικτό Πανεπιστήμιο — Course Instructional Designer</strong><br>
+        Σχεδίαση μαθησιακών εμπειριών, ανάπτυξη υλικού, διαχείριση/συντονισμός παραδοτέων για έργα EU (Horizon, Erasmus+, Digital Europe).
+      </td>
+    </tr>
+    <tr>
+      <td>10/2023 – 09/2025</td>
+      <td>
+        <strong>Horizon: XR2Learn</strong> — Συμμετοχή στα παραδοτέα (σχεδίαση XR σεναρίων μάθησης, αξιολόγηση, τεκμηρίωση).
+      </td>
+    </tr>
+    <tr>
+      <td>10/2023 – 09/2025</td>
+      <td>
+        <strong>Drones4STEM</strong> — Ανάπτυξη εκπαιδευτικών δραστηριοτήτων με drones, υποστήριξη εκπαιδευτικών, αποτίμηση αποτελεσμάτων.
+      </td>
+    </tr>
+    <tr>
+      <td>07/2023 – 12/2023</td>
+      <td>
+        <strong>Erasmus+: POSITIVE</strong> — Συμμετοχή στα παραδοτέα για ψηφιακό περιβάλλον πρόληψης στρες (υλικό, πιλοτικές δράσεις).
+      </td>
+    </tr>
+    <tr>
+      <td>02/2023 – 06/2023</td>
+      <td>
+        <strong>ΓΣΕΒΕΕ — Εμπειρογνώμονας</strong> — Νέο επαγγελματικό περίγραμμα «Ειδικός υποστήριξης συστημάτων & περιεχομένου e-learning».
+      </td>
+    </tr>
+    <tr>
+      <td>04/2023 – 06/2023</td>
+      <td>
+        <strong>ΙΕΠ — Έργο προσχολικής εκπαίδευσης</strong> — Ανάπτυξη λογισμικού, επιμόρφωση & υποστήριξη εκπαιδευτικών.
+      </td>
+    </tr>
+    <tr>
+      <td>10/2022 – 05/2024</td>
+      <td>
+        <strong>Digital Europe: LeADS</strong> — Συνεισφορά σε προγράμματα Advanced Digital Skills (περιεχόμενο, MOOC/υλικό).
+      </td>
+    </tr>
+    <tr>
+      <td>10/2022 – Σήμερα</td>
+      <td>
+        <strong>Horizon: augMENTOR</strong> — Σχεδίαση/τεκμηρίωση εκπαιδευτικών σεναρίων XR για επαγγελματική κατάρτιση.
+      </td>
+    </tr>
+    <tr>
+      <td>11/2021 – 11/2024</td>
+      <td>
+        <strong>Erasmus+: PARADIGM</strong> — Project management, συντονισμός παραδοτέων, πράσινες δεξιότητες/IoT & STEM.
+      </td>
+    </tr>
+    <tr>
+      <td>11/2021 – 11/2024</td>
+      <td>
+        <strong>Erasmus+: DIGIHALL</strong> — Project management, σχεδίαση blended learning για Digital Health.
+      </td>
+    </tr>
+    <tr>
+      <td>11/2021 (10 μέρες)</td>
+      <td>
+        <strong>Erasmus+: BEQUEL</strong> — Μεταφράσεις & επιμέλεια (Ελ-Αγγ-Ελ) O1/A4 benchmarking VET.
+      </td>
+    </tr>
+    <tr>
+      <td>03/2021 – 02/2023</td>
+      <td>
+        <strong>Erasmus+: VISITOR</strong> — Project management, e-μουσεία/εικονικές περιηγήσεις για σχολεία.
+      </td>
+    </tr>
+    <tr>
+      <td>10/2019 – 11/2021</td>
+      <td>
+        <strong>Erasmus+: Faville</strong> — Συντονισμός, εργαλεία/πρακτικές για αποτελεσματική εξ αποστάσεως μάθηση.
+      </td>
+    </tr>
+    <tr>
+      <td>09/2019 – 08/2022</td>
+      <td>
+        <strong>Erasmus+: Participa</strong> — Εργαλεία επαγγελματικής ανάπτυξης για δικαιώματα συμμετοχής (ECCE).
+      </td>
+    </tr>
+    <tr>
+      <td>04/2021 – 05/2021</td>
+      <td>
+        <strong>Realiscape Typorama – ΕΕΥΕΜ/ΕΑΠ (MIS 80090)</strong> — Υπεργολαβία εκπαιδευτικού έργου.
+      </td>
+    </tr>
+    <tr>
+      <td>07/2020 – 11/2020</td>
+      <td>
+        <strong>Interreg Greece–Italy: Teleicce</strong> — Teleworking & MOOC training.
+      </td>
+    </tr>
+    <tr>
+      <td>08/2019 – 09/2019</td>
+      <td>
+        <strong>Erasmus+: REAMOOC</strong> — Τεχνική υποστήριξη για ανοικτή & εξ αποστάσεως μάθηση.
+      </td>
+    </tr>
+    <tr>
+      <td>11/2018 – 05/2019</td>
+      <td>
+        <strong>Μελέτη–Οδηγός για ψηφιακή/εξ αποστάσεως εκπαίδευση</strong> — ΕΠ ΑΝΑΔ–ΕΔΒΜ 2014–2020.
+      </td>
+    </tr>
+    <tr>
+      <td>01/2018 – Σήμερα</td>
+      <td>
+        <strong>ΕΕΥΕΜ</strong> — Υπεύθυνος δημιουργίας & διαχείρισης ηλεκτρονικών μαθημάτων · υπεύθυνος υποέργου MOOC.
+      </td>
+    </tr>
+    <tr>
+      <td>2017 – 2017</td>
+      <td>
+        <strong>Junior Coding Academy — Google RISE 2016</strong> (InterMedi@KT, Ελλάδα) — Σχεδίαση/υλοποίηση.
+      </td>
+    </tr>
+    <tr>
+      <td>12/2016 – 11/2017</td>
+      <td>
+        <strong>ΕΑΠ: Μεικτή μάθηση με Scratch</strong> — Σχεδίαση & υλοποίηση.
+      </td>
+    </tr>
+    <tr>
+      <td>2016 – 2018</td>
+      <td>
+        <strong>ΕΑΠ — Ομάδα Νέων Προγραμμάτων Σπουδών</strong> — Course Instructional Designer.
+      </td>
+    </tr>
+    <tr>
+      <td>2015 – 2016</td>
+      <td>
+        <strong>Erasmus+ (Αθλητισμός)</strong> — Ίσες συμμετοχές & αντιμετώπιση διακρίσεων/βίας.
+      </td>
+    </tr>
+    <tr>
+      <td>03/2015 – 05/2015</td>
+      <td>
+        <strong>Ανοικτά Ακαδημαϊκά Μαθήματα — Παν. Πατρών</strong> — Ανάπτυξη μαθημάτων τύπου Β/Γ.
+      </td>
+    </tr>
+    <tr>
+      <td>2014 – 2016</td>
+      <td>
+        <strong>ΕΕΥΕΜ – ΕΑΠ</strong> — Προγραμματιστής λογισμικού.
+      </td>
+    </tr>
+    <tr>
+      <td>06/2014 – 08/2014</td>
+      <td>
+        <strong>TU Eindhoven (REVATECH)</strong> — 3μηνη πρακτική, προγραμματιστής.
+      </td>
+    </tr>
+    <tr>
+      <td>10/2013 – 12/2015</td>
+      <td>
+        <strong>ΕΕΥΕΜ – ΕΑΠ</strong> — Προγραμματιστής λογισμικού, Υποέργο 5.
+      </td>
+    </tr>
+    <tr>
+      <td>06/2009 – 08/2009</td>
+      <td>
+        <strong>MACTEL</strong> — Μηχανικός δικτύων, τεχνολόγος Πληροφορικής, τεχνικός εγκαταστάσεων.
+      </td>
+    </tr>
+    <tr>
+      <td>2008 – 2009</td>
+      <td>
+        <strong>Ελληνικός Στρατός — Σχ. Αξκών Έρευνας Πληροφορικής</strong> — Αναλυτής/Προγραμματιστής · Network/Domain/Mail/File Server Admin.
+      </td>
+    </tr>
+  </table>
+</section>
 
     <!-- Διδακτική Εμπειρία -->
     <section id="teaching">
-      <h2>Διδακτική Εμπειρία</h2>
-      <ul>
-        <li><strong>2023–2024</strong> — Καθηγητής ΠΕ86, Ειδικό Επαγγελματικό Γυμνάσιο–Λύκειο Μεσολογγίου</li>
-        <li><strong>2011–2012, 2014–2015, 2017–2022</strong> — Σχολεία Δεύτερης Ευκαιρίας (ΙΝΕΔΙΒΙΜ)</li>
-        <li><strong>2010–σήμερα</strong> — Φροντιστήρια Μέσης Εκπαίδευσης (Θεωρία & Πράξη, Διάπλαση, Δερβίτση, Αγωγή, Ζαρκαβέλη, Σύγχρονη Παιδεία, Πρόοδος, Θεμέλιο, Ενιαίο)</li>
-        <li><strong>2009–2012</strong> — Εργαστηριακός Συνεργάτης Τμήματος Αυτοματισμού (πρώην ΤΕΙ Μεσολογγίου): Τηλεπικοινωνιακά δίκτυα, Java OOP, CAD/CAM/CAE, Αρχιτεκτονική Η/Υ, Ακολουθιακά Κυκλώματα, C, Βιομηχανικός έλεγχος</li>
-        <li><strong>2009–2011</strong> — ΑΛΦΑ Εκπαίδευση Μεσολογγίου: CISCO IT Essentials, Summer camp, ECDL</li>
-        <li><strong>2010–2011, 2011–2012, 2015–2016</strong> — ΚΕ.Τ.Ε.Κ. ΕΠΑ.Σ ΟΑΕΔ: Εισαγωγή Η/Υ, Basic, Δίκτυα, Λειτουργικά, Προχωρημένες τεχνικές γραφείου, HTML</li>
-        <li><strong>2009–2010, 2010–2011, 2011–2012, 2012–2013, 2017–2018, 2018–2019, 2019–2020, 2020–2021, 2021–2022</strong> — Δημόσια ΙΕΚ: ΒΔ, C OOP, DTP, Τεχνολογίες Ιστού, Ασφάλεια, Διαχείριση Δικτύων, Αλγόριθμοι & Δομές, Pascal, Java, Python, Επικοινωνίες κ.ά.</li>
-        <li><strong>2010–2011</strong> — ΙΕΚ ΟΑΕΔ</li>
-        <li><strong>2013–2014</strong> — Εκπαιδευτής ΚΔΒΜ Αιτωλοακαρνανίας — Microsoft Office</li>
-      </ul>
-    </section>
+  <h2>Διδακτική Εμπειρία</h2>
+  <table class="twocol-table">
+    <tr>
+      <td>2023 – 2024</td>
+      <td>
+        <strong>Καθηγητής ΠΕ86, Ειδικό Επαγγελματικό Γυμνάσιο–Λύκειο Μεσολογγίου</strong><br>
+        Διδασκαλία Πληροφορικής, προσαρμογές για ειδική αγωγή, ανάπτυξη εργαστηριακών φύλλων εργασίας & μικτών προσεγγίσεων.
+      </td>
+    </tr>
+    <tr>
+      <td>2011–2012,<br>2014–2015,<br>2017–2022</td>
+      <td>
+        <strong>Σχολεία Δεύτερης Ευκαιρίας (ΙΝΕΔΙΒΙΜ)</strong><br>
+        Εκπαίδευση ενηλίκων: βασικές δεξιότητες ψηφιακού γραμματισμού, online συνεργατικά εργαλεία, αξιολόγηση μάθησης.
+      </td>
+    </tr>
+    <tr>
+      <td>2010 – Σήμερα</td>
+      <td>
+        <strong>Φροντιστήρια Μέσης Εκπαίδευσης (Αιτ/νία)</strong><br>
+        Προετοιμασία μαθητών Γυμνασίου/Λυκείου σε ΑΕΠΠ, αλγοριθμική σκέψη, Python/Java, δικτυακές τεχνολογίες.
+      </td>
+    </tr>
+    <tr>
+      <td>2009 – 2012</td>
+      <td>
+        <strong>Εργαστηριακός Συνεργάτης, Τμήμα Αυτοματισμού (πρ. ΤΕΙ Μεσολογγίου)</strong><br>
+        Τηλεπικοινωνιακά δίκτυα, Java OOP, CAD/CAM/CAE, Αρχιτεκτονική Η/Υ, Ακολουθιακά κυκλώματα, C, Βιομηχανικός έλεγχος.
+      </td>
+    </tr>
+    <tr>
+      <td>2009 – 2011</td>
+      <td>
+        <strong>ΑΛΦΑ Εκπαίδευση Μεσολογγίου</strong> — CISCO IT Essentials, Summer Camp, ECDL.
+      </td>
+    </tr>
+    <tr>
+      <td>2010–2011,<br>2011–2012,<br>2015–2016</td>
+      <td>
+        <strong>ΚΕ.Τ.Ε.Κ. ΕΠΑ.Σ ΟΑΕΔ</strong> — Εισαγωγή Η/Υ, Basic, Δίκτυα, Λειτουργικά, Προχωρημένες τεχνικές γραφείου, HTML.
+      </td>
+    </tr>
+    <tr>
+      <td>2009–2010 έως 2021–2022</td>
+      <td>
+        <strong>Δημόσια ΙΕΚ</strong> — Βάσεις Δεδομένων, C OOP, DTP, Τεχνολογίες Ιστού, Ασφάλεια, Διαχείριση Δικτύων, Αλγόριθμοι & Δομές, Pascal, Java, Python, Επικοινωνίες.
+      </td>
+    </tr>
+    <tr>
+      <td>2010 – 2011</td>
+      <td>
+        <strong>ΙΕΚ ΟΑΕΔ</strong> — Θεματικές κύκλων Πληροφορικής (εφαρμογές γραφείου, δίκτυα, web).
+      </td>
+    </tr>
+    <tr>
+      <td>2013 – 2014</td>
+      <td>
+        <strong>ΚΔΒΜ Αιτωλοακαρνανίας</strong> — Εκπαίδευση ενηλίκων σε Microsoft Office & ψηφιακές δεξιότητες.
+      </td>
+    </tr>
+  </table>
+</section>
+
+<section id="projects">
+  <h2>Ερευνητικά Έργα</h2>
+  <table class="twocol-table">
+    <tr>
+      <td>2023 – 2025</td>
+      <td>
+        <a href="https://xr2learn.eu/" target="_blank"><strong>Horizon: XR2Learn</strong></a><br>
+        Σχεδίαση και ανάπτυξη σεναρίων μάθησης με χρήση XR, συμμετοχή σε deliverables και αξιολόγηση.
+      </td>
+    </tr>
+    <tr>
+      <td>2023 – 2025</td>
+      <td>
+        <a href="https://drones4stem.eu/" target="_blank"><strong>Erasmus+: Drones4STEM</strong></a><br>
+        Ανάπτυξη δραστηριοτήτων STEM με drones για μαθητές, επιμόρφωση εκπαιδευτικών και διάχυση αποτελεσμάτων.
+      </td>
+    </tr>
+    <tr>
+      <td>2023 – 2023</td>
+      <td>
+        <a href="#" target="_blank"><strong>Erasmus+: POSITIVE</strong></a><br>
+        Δημιουργία ψηφιακού περιβάλλοντος πρόληψης στρες. Συνεισφορά σε εκπαιδευτικό υλικό και πιλοτικές δράσεις.
+      </td>
+    </tr>
+    <tr>
+      <td>2022 – 2024</td>
+      <td>
+        <a href="https://leads-project.eu/" target="_blank"><strong>Digital Europe: LeADS</strong></a><br>
+        Προγράμματα advanced digital skills. Δημιουργία μαθημάτων, MOOC και υποστηρικτικού υλικού.
+      </td>
+    </tr>
+    <tr>
+      <td>2022 – Σήμερα</td>
+      <td>
+        <a href="https://augmentor-project.eu/" target="_blank"><strong>Horizon: augMENTOR</strong></a><br>
+        Ανάπτυξη XR σεναρίων για επαγγελματική κατάρτιση. Συμμετοχή στη συγγραφή deliverables.
+      </td>
+    </tr>
+    <tr>
+      <td>2021 – 2024</td>
+      <td>
+        <a href="https://paradigm-project.eu/" target="_blank"><strong>Erasmus+: PARADIGM</strong></a><br>
+        Project management, συντονισμός παραδοτέων, δραστηριότητες σε πράσινες δεξιότητες, IoT & STEM.
+      </td>
+    </tr>
+    <tr>
+      <td>2021 – 2024</td>
+      <td>
+        <a href="https://digihall.eu/" target="_blank"><strong>Erasmus+: DIGIHALL</strong></a><br>
+        Σχεδίαση blended learning για ψηφιακή υγεία, διαχείριση παραδοτέων και συντονισμός.
+      </td>
+    </tr>
+    <tr>
+      <td>2021 – 2023</td>
+      <td>
+        <a href="https://visitor-project.eu/" target="_blank"><strong>Erasmus+: VISITOR</strong></a><br>
+        Σχεδίαση εκπαιδευτικών εφαρμογών εικονικών μουσείων, ανάπτυξη MOOC και υποστήριξη σχολείων.
+      </td>
+    </tr>
+    <tr>
+      <td>2019 – 2021</td>
+      <td>
+        <a href="https://faville-project.eu/" target="_blank"><strong>Erasmus+: FAVILLE</strong></a><br>
+        Εργαλεία για εξ αποστάσεως μάθηση, blended learning στρατηγικές, συμμετοχή σε project management.
+      </td>
+    </tr>
+    <tr>
+      <td>2019 – 2022</td>
+      <td>
+        <a href="https://participa-project.eu/" target="_blank"><strong>Erasmus+: Participa</strong></a><br>
+        Δικαιώματα συμμετοχής στην εκπαίδευση ECCE, δημιουργία υλικού και εργαλειοθήκης επαγγελματικής ανάπτυξης.
+      </td>
+    </tr>
+    <tr>
+      <td>2018 – 2019</td>
+      <td>
+        <a href="#" target="_blank"><strong>Μελέτη – Οδηγός για την ψηφιακή εκπαίδευση</strong></a><br>
+        Έργο ΕΠ ΑΝΑΔ–ΕΔΒΜ 2014–2020. Ανάπτυξη οδηγού και υλικού για διδασκαλία εξ αποστάσεως.
+      </td>
+    </tr>
+  </table>
+</section>
 
     <!-- Ερευνητικά & Έργα (κάρτες με τίτλο/περιγραφή/link) -->
     <section id="projects">
